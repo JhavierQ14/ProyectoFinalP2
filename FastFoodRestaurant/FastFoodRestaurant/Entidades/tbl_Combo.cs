@@ -19,7 +19,7 @@ namespace FastFoodRestaurant.Entidades
 
         public string nombreCombo { get; set; }
 
-        public decimal precioC { get; set; }
+        public double precioC { get; set; }
 
         public DateTime fechaCreacionC { get; set; }
 

@@ -16,7 +16,7 @@ namespace FastFoodRestaurant.Entidades
 
         public int cantidad { get; set; }
 
-        public decimal totalFinal { get; set; }
+        public double totalFinal { get; set; }
 
         public int orden_FK { get; set; }
         public int combo_FK { get; set; }

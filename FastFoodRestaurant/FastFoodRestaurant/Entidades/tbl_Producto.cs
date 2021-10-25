@@ -18,7 +18,7 @@ namespace FastFoodRestaurant.Entidades
 
         public string nombreProducto { get; set; }
 
-        public decimal precioP { get; set; }
+        public double precioP { get; set; }
 
         public DateTime fechaCreacionP  { get; set; }
 
