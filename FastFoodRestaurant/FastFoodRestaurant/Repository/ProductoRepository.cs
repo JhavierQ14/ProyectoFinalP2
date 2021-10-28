@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace FastFoodRestaurant.Repository
 {
-    public class ComboRepository : ICombo
+    public class ProductoRepository : IProducto
     {
-        public ICollection<tbl_Combo> Combo()
+        public void Delete(tbl_Producto producto)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(tbl_Combo combo)
+        public void Insert(tbl_Producto producto)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(tbl_Combo combo)
+        public ICollection<tbl_Producto> producto()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(tbl_Combo combo)
+        public void Update(tbl_Producto producto)
         {
             throw new NotImplementedException();
         }

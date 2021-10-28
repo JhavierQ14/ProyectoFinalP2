@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace FastFoodRestaurant.Repository
 {
-    public class ComboRepository : ICombo
+    public class CarritoRepository : ICarrito
     {
-        public ICollection<tbl_Combo> Combo()
+        public ICollection<tbl_Carrito> carrito()
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(tbl_Combo combo)
+        public void Delete(tbl_Carrito carrito)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(tbl_Combo combo)
+        public void Insert(tbl_Carrito carrito)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(tbl_Combo combo)
+        public void Update(tbl_Carrito carrito)
         {
             throw new NotImplementedException();
         }
