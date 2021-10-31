@@ -1,4 +1,5 @@
-﻿using FastFoodRestaurant.Entidades;
+﻿using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Entidades;
 using FastFoodRestaurant.Service;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,33 @@ namespace FastFoodRestaurant.Repository
 {
     public class UsuarioRepository : IUsuario
     {
+        private ApplicationDbContext app;
+
+        public UsuarioRepository(ApplicationDbContext app)
+        {
+            this.app = app;
+        }
+
         public void Delete(tbl_User user)
         {
-            throw new NotImplementedException();
+            app.tbl_User.Remove(user);
         }
 
         public void Insert(tbl_User user)
         {
-            throw new NotImplementedException();
+            app.Add(user);
+            app.SaveChanges();
         }
 
         public ICollection<tbl_User> ListarUsuario()
         {
-            throw new NotImplementedException();
+            return app.tbl_User.ToList();
         }
 
         public void Update(tbl_User user)
         {
-            throw new NotImplementedException();
+            app.Update(user);
+            app.SaveChanges();
         }
     }
 }

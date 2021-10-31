@@ -1,4 +1,5 @@
-﻿using FastFoodRestaurant.Entidades;
+﻿using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Entidades;
 using FastFoodRestaurant.Service;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,33 @@ namespace FastFoodRestaurant.Repository
 {
     public class OrdenRepository : IOrden
     {
+        private ApplicationDbContext app;
+
+        public OrdenRepository(ApplicationDbContext app)
+        {
+            this.app = app;
+        }
+
         public void Delete(tbl_Orden orden)
         {
-            throw new NotImplementedException();
+            app.tbl_Orden.Remove(orden);
         }
 
         public void Insert(tbl_Orden orden)
         {
-            throw new NotImplementedException();
+            app.Add(orden);
+            app.SaveChanges();
         }
 
         public ICollection<tbl_Orden> Orden()
         {
-            throw new NotImplementedException();
+            return app.tbl_Orden.ToList();
         }
 
         public void Update(tbl_Orden orden)
         {
-            throw new NotImplementedException();
+            app.Update(orden);
+            app.SaveChanges();
         }
     }
 }

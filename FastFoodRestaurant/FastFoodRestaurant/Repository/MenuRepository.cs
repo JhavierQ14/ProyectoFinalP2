@@ -1,4 +1,5 @@
-﻿using FastFoodRestaurant.Entidades;
+﻿using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Entidades;
 using FastFoodRestaurant.Service;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,33 @@ namespace FastFoodRestaurant.Repository
 {
     public class MenuRepository : IMenu
     {
+        private ApplicationDbContext app;
+
+        public MenuRepository(ApplicationDbContext app)
+        {
+            this.app = app;
+        }
+
         public void Delete(tbl_Menu menu)
         {
-            throw new NotImplementedException();
+            app.tbl_Menu.Remove(menu);
         }
 
         public void Insert(tbl_Menu menu)
         {
-            throw new NotImplementedException();
+            app.Add(menu);
+            app.SaveChanges();
         }
 
         public ICollection<tbl_Menu> Menu()
         {
-            throw new NotImplementedException();
+            return app.tbl_Menu.ToList();
         }
 
         public void Update(tbl_Menu menu)
         {
-            throw new NotImplementedException();
+            app.Update(menu);
+            app.SaveChanges();
         }
     }
 }

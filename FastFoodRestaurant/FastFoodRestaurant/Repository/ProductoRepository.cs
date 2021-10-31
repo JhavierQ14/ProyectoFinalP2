@@ -1,4 +1,5 @@
-﻿using FastFoodRestaurant.Entidades;
+﻿using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Entidades;
 using FastFoodRestaurant.Service;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,33 @@ namespace FastFoodRestaurant.Repository
 {
     public class ProductoRepository : IProducto
     {
+        private ApplicationDbContext app;
+
+        public ProductoRepository(ApplicationDbContext app)
+        {
+            this.app = app;
+        }
+
         public void Delete(tbl_Producto producto)
         {
-            throw new NotImplementedException();
+            app.tbl_Producto.Remove(producto);
         }
 
         public void Insert(tbl_Producto producto)
         {
-            throw new NotImplementedException();
+            app.Add(producto);
+            app.SaveChanges();
         }
 
         public ICollection<tbl_Producto> producto()
         {
-            throw new NotImplementedException();
+            return app.tbl_Producto.ToList();
         }
 
         public void Update(tbl_Producto producto)
         {
-            throw new NotImplementedException();
+            app.Update(producto);
+            app.SaveChanges();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FastFoodRestaurant.Entidades;
+﻿using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Entidades;
 using FastFoodRestaurant.Service;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,33 @@ namespace FastFoodRestaurant.Repository
 {
     public class DocumentoRepository : IDocumento
     {
+        private ApplicationDbContext app;
+
+        public DocumentoRepository(ApplicationDbContext app)
+        {
+            this.app = app;
+        }
+
         public void Delete(tbl_Documento documento)
         {
-            throw new NotImplementedException();
+            app.tbl_Documento.Remove(documento);
         }
 
         public ICollection<tbl_Documento> documento()
         {
-            throw new NotImplementedException();
+            return app.tbl_Documento.ToList();
         }
 
         public void Insert(tbl_Documento documento)
         {
-            throw new NotImplementedException();
+            app.Add(documento);
+            app.SaveChanges();
         }
 
         public void Update(tbl_Documento documento)
         {
-            throw new NotImplementedException();
+            app.Add(documento);
+            app.SaveChanges();
         }
     }
 }

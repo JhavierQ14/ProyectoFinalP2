@@ -1,4 +1,5 @@
-﻿using FastFoodRestaurant.Entidades;
+﻿using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Entidades;
 using FastFoodRestaurant.Service;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,33 @@ namespace FastFoodRestaurant.Repository
 {
     public class MetodoPagoRepository : IMetodoPago
     {
+        private ApplicationDbContext app;
+
+        public MetodoPagoRepository(ApplicationDbContext app)
+        {
+            this.app = app;
+        }
+
         public void Delete(tbl_MetodoPago metodoPago)
         {
-            throw new NotImplementedException();
+            app.tbl_MetodoPago.Remove(metodoPago);
         }
 
         public void Insert(tbl_MetodoPago metodoPago)
         {
-            throw new NotImplementedException();
+            app.Add(metodoPago);
+            app.SaveChanges();
         }
 
         public ICollection<tbl_MetodoPago> metodoPago()
         {
-            throw new NotImplementedException();
+            return app.tbl_MetodoPago.ToList();
         }
 
         public void Update(tbl_MetodoPago metodoPago)
         {
-            throw new NotImplementedException();
+            app.Update(metodoPago);
+            app.SaveChanges();
         }
     }
 }

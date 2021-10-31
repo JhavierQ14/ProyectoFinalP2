@@ -1,4 +1,5 @@
-﻿using FastFoodRestaurant.Entidades;
+﻿using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Entidades;
 using FastFoodRestaurant.Service;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,33 @@ namespace FastFoodRestaurant.Repository
 {
     public class DetalleOrdenRepository : IDetalleOrden
     {
+        private ApplicationDbContext app;
+
+        public DetalleOrdenRepository(ApplicationDbContext app)
+        {
+            this.app = app;
+        }
+
         public void Delete(tbl_DetalleOrden detalleOrden)
         {
-            throw new NotImplementedException();
+            app.tbl_DetalleOrden.Remove(detalleOrden);
         }
 
         public ICollection<tbl_DetalleOrden> detalleOrden()
         {
-            throw new NotImplementedException();
+            return app.tbl_DetalleOrden.ToList();
         }
 
         public void Insert(tbl_DetalleOrden detalleOrden)
         {
-            throw new NotImplementedException();
+            app.Add(detalleOrden);
+            app.SaveChanges();
         }
 
         public void Update(tbl_DetalleOrden detalleOrden)
         {
-            throw new NotImplementedException();
+            app.Update(detalleOrden);
+            app.SaveChanges();
         }
     }
 }
