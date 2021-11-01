@@ -55,7 +55,7 @@ namespace FastFoodRestaurant
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Principal}/{action=LogIn}/{id?}");
             });
         }
     }
