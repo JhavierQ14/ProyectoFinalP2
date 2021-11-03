@@ -1,4 +1,6 @@
 using FastFoodRestaurant.Data;
+using FastFoodRestaurant.Repository;
+using FastFoodRestaurant.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,7 @@ namespace FastFoodRestaurant
             services.AddDbContext<ApplicationDbContext>(optios =>
            optios.UseSqlServer(Configuration.GetConnectionString
            ("DefaultConection")));
+            services.AddTransient<IUsuario, UsuarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
