@@ -19,7 +19,7 @@ namespace FastFoodRestaurant.Entidades
 
 
 
-        public ICollection<tbl_Orden> tbl_Orden { get; set; }
+        public ICollection<tbl_Orden> Tbl_Orden { get; set; }
 
 
     }

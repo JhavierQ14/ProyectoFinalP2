@@ -22,5 +22,10 @@ namespace FastFoodRestaurant.Entidades
         public int combo_FK { get; set; }
         public int producto_Fk { get; set; }
 
+        public tbl_Orden Tbl_Orden { get; set; }
+
+        public tbl_Combo Tbl_Combo { get; set; }
+        public tbl_Producto Tbl_Producto { get; set; }
+
     }
 }

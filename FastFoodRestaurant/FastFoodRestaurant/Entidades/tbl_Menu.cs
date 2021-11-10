@@ -17,10 +17,7 @@ namespace FastFoodRestaurant.Entidades
 
         public string nombreMenu { get; set; }
 
-
-
-        public ICollection<tbl_Combo > tbl_Combo { get; set; }
-        public ICollection<tbl_Producto> tbl_Producto { get; set; }
+        public ICollection<tbl_Producto> Tbl_Producto { get; set; }
 
     }
 }

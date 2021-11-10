@@ -13,11 +13,11 @@ namespace FastFoodRestaurant.Entidades
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int rol_id { get; set; }
+        public int rolUser_id { get; set; }
 
         public string nombreRol { get; set; }
 
 
-        public ICollection<tbl_User> tbl_User  { get; set; }
+        public ICollection<tbl_User> Tbl_User  { get; set; }
     }
 }

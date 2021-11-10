@@ -25,6 +25,12 @@ namespace FastFoodRestaurant.Entidades
         public int metodoPago_FK { get; set; }
         public int documento_Fk { get; set; }
 
+        public tbl_User Tbl_User { get; set; }
+        public tbl_MetodoPago Tbl_MetodoPago { get; set; }
+        public tbl_Documento Tbl_Documento { get; set; }
+
+        public IEnumerable<tbl_DetalleOrden> Tbl_DetalleOrdens { get; set; }
+
 
     }
 }

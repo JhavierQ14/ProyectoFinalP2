@@ -29,17 +29,18 @@ namespace FastFoodRestaurant.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registro(string nombreU,string apellidoU, string correoU, string contraU) 
+        public IActionResult Registro(tbl_User u) 
         {
             tbl_User user = new tbl_User();
-            user.nombreU = nombreU;
-            user.apellidoU = apellidoU;
-            user.correoU = correoU;
-            user.contraU = contraU;
+            user.nombreU = u.nombreU;
+            user.apellidoU = u.apellidoU;
+            user.telefonoU = u.telefonoU;
+            user.correoU = u.correoU;
+            user.contraU = u.contraU;
 
             iusuario.Insert(user);
 
-            return Redirect("/Index/Principal");
+            return Redirect("/Principal/Index");
         }
     }
 }

@@ -20,8 +20,9 @@ namespace FastFoodRestaurant.Entidades
 
         public string referencia { get; set; }
 
+        public int usuario_Fk { get; set;}
 
-        public ICollection<tbl_User> tbl_User { get; set; }
+        public ICollection<tbl_User> Tbl_User { get; set; }
 
     }
 }

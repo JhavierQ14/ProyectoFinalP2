@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FastFoodRestaurant.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211025221552_Migrations")]
+    [Migration("20211105022708_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace FastFoodRestaurant.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
+                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Carrito", b =>
@@ -27,6 +27,15 @@ namespace FastFoodRestaurant.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Tbl_Combomenu_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tbl_Productoproducto_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tbl_Userusuario_id")
+                        .HasColumnType("int");
 
                     b.Property<int>("cantidadP")
                         .HasColumnType("int");
@@ -37,10 +46,19 @@ namespace FastFoodRestaurant.Migrations
                     b.Property<int>("producto_Fk")
                         .HasColumnType("int");
 
+                    b.Property<double>("totalP")
+                        .HasColumnType("float");
+
                     b.Property<int>("usuario_FK")
                         .HasColumnType("int");
 
                     b.HasKey("carrito_id");
+
+                    b.HasIndex("Tbl_Combomenu_id");
+
+                    b.HasIndex("Tbl_Productoproducto_id");
+
+                    b.HasIndex("Tbl_Userusuario_id");
 
                     b.ToTable("tbl_Carrito");
                 });
@@ -61,21 +79,13 @@ namespace FastFoodRestaurant.Migrations
                     b.Property<DateTime>("fechaCreacionC")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("menu_Fk")
-                        .HasColumnType("int");
-
                     b.Property<string>("nombreCombo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("precioC")
                         .HasColumnType("float");
 
-                    b.Property<int?>("tbl_Menumenu_id")
-                        .HasColumnType("int");
-
                     b.HasKey("menu_id");
-
-                    b.HasIndex("tbl_Menumenu_id");
 
                     b.ToTable("tbl_Combo");
                 });
@@ -86,6 +96,12 @@ namespace FastFoodRestaurant.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Tbl_Combomenu_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tbl_Productoproducto_id")
+                        .HasColumnType("int");
 
                     b.Property<int>("cantidadP")
                         .HasColumnType("int");
@@ -101,6 +117,10 @@ namespace FastFoodRestaurant.Migrations
 
                     b.HasKey("detalleCombo_id");
 
+                    b.HasIndex("Tbl_Combomenu_id");
+
+                    b.HasIndex("Tbl_Productoproducto_id");
+
                     b.ToTable("tbl_DetalleCombo");
                 });
 
@@ -110,6 +130,15 @@ namespace FastFoodRestaurant.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Tbl_Combomenu_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tbl_Ordenorden_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tbl_Productoproducto_id")
+                        .HasColumnType("int");
 
                     b.Property<int>("cantidad")
                         .HasColumnType("int");
@@ -127,6 +156,12 @@ namespace FastFoodRestaurant.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("detalleOden_id");
+
+                    b.HasIndex("Tbl_Combomenu_id");
+
+                    b.HasIndex("Tbl_Ordenorden_id");
+
+                    b.HasIndex("Tbl_Productoproducto_id");
 
                     b.ToTable("tbl_DetalleOrden");
                 });
@@ -158,6 +193,9 @@ namespace FastFoodRestaurant.Migrations
 
                     b.Property<string>("ubicacion")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("usuario_Fk")
+                        .HasColumnType("int");
 
                     b.HasKey("domicilio_id");
 
@@ -201,6 +239,15 @@ namespace FastFoodRestaurant.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("Tbl_Documentodocumento_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tbl_MetodoPagometodoPago_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Tbl_Userusuario_id")
+                        .HasColumnType("int");
+
                     b.Property<string>("codOrden")
                         .HasColumnType("nvarchar(max)");
 
@@ -216,20 +263,16 @@ namespace FastFoodRestaurant.Migrations
                     b.Property<int>("metodoPago_FK")
                         .HasColumnType("int");
 
-                    b.Property<int?>("tbl_Documentodocumento_id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("tbl_MetodoPagometodoPago_id")
-                        .HasColumnType("int");
-
                     b.Property<int>("user_FK")
                         .HasColumnType("int");
 
                     b.HasKey("orden_id");
 
-                    b.HasIndex("tbl_Documentodocumento_id");
+                    b.HasIndex("Tbl_Documentodocumento_id");
 
-                    b.HasIndex("tbl_MetodoPagometodoPago_id");
+                    b.HasIndex("Tbl_MetodoPagometodoPago_id");
+
+                    b.HasIndex("Tbl_Userusuario_id");
 
                     b.ToTable("tbl_Orden");
                 });
@@ -240,6 +283,9 @@ namespace FastFoodRestaurant.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Tbl_Menumenu_id")
+                        .HasColumnType("int");
 
                     b.Property<string>("codProducto")
                         .HasColumnType("nvarchar(max)");
@@ -259,19 +305,16 @@ namespace FastFoodRestaurant.Migrations
                     b.Property<double>("precioP")
                         .HasColumnType("float");
 
-                    b.Property<int?>("tbl_Menumenu_id")
-                        .HasColumnType("int");
-
                     b.HasKey("producto_id");
 
-                    b.HasIndex("tbl_Menumenu_id");
+                    b.HasIndex("Tbl_Menumenu_id");
 
                     b.ToTable("tbl_Producto");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_RolUsuario", b =>
                 {
-                    b.Property<int>("rol_id")
+                    b.Property<int>("rolUser_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -279,7 +322,7 @@ namespace FastFoodRestaurant.Migrations
                     b.Property<string>("nombreRol")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("rol_id");
+                    b.HasKey("rolUser_id");
 
                     b.ToTable("tbl_RolUsuarios");
                 });
@@ -291,6 +334,9 @@ namespace FastFoodRestaurant.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("Tbl_RolUsuariorolUser_id")
+                        .HasColumnType("int");
+
                     b.Property<string>("apellidoU")
                         .HasColumnType("nvarchar(max)");
 
@@ -300,91 +346,180 @@ namespace FastFoodRestaurant.Migrations
                     b.Property<string>("correoU")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("domicilio_Fk")
-                        .HasColumnType("int");
-
                     b.Property<string>("nombreU")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("rolUsuario_Fk")
+                    b.Property<int>("rolUser_Fk")
                         .HasColumnType("int");
 
                     b.Property<int?>("tbl_Domiciliodomicilio_id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("tbl_RolUsuariorol_id")
+                    b.Property<int?>("telefonoU")
                         .HasColumnType("int");
 
                     b.HasKey("usuario_id");
 
-                    b.HasIndex("tbl_Domiciliodomicilio_id");
+                    b.HasIndex("Tbl_RolUsuariorolUser_id");
 
-                    b.HasIndex("tbl_RolUsuariorol_id");
+                    b.HasIndex("tbl_Domiciliodomicilio_id");
 
                     b.ToTable("tbl_User");
                 });
 
-            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Combo", b =>
+            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Carrito", b =>
                 {
-                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Menu", null)
-                        .WithMany("tbl_Combo")
-                        .HasForeignKey("tbl_Menumenu_id");
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Combo", "Tbl_Combo")
+                        .WithMany("Tbl_Carritos")
+                        .HasForeignKey("Tbl_Combomenu_id");
+
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Producto", "Tbl_Producto")
+                        .WithMany("Tbl_Carritos")
+                        .HasForeignKey("Tbl_Productoproducto_id");
+
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_User", "Tbl_User")
+                        .WithMany("Tbl_Carrito")
+                        .HasForeignKey("Tbl_Userusuario_id");
+
+                    b.Navigation("Tbl_Combo");
+
+                    b.Navigation("Tbl_Producto");
+
+                    b.Navigation("Tbl_User");
+                });
+
+            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_DetalleCombo", b =>
+                {
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Combo", "Tbl_Combo")
+                        .WithMany("Tbl_DetalleCombos")
+                        .HasForeignKey("Tbl_Combomenu_id");
+
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Producto", "Tbl_Producto")
+                        .WithMany("Tbl_DetalleCombos")
+                        .HasForeignKey("Tbl_Productoproducto_id");
+
+                    b.Navigation("Tbl_Combo");
+
+                    b.Navigation("Tbl_Producto");
+                });
+
+            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_DetalleOrden", b =>
+                {
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Combo", "Tbl_Combo")
+                        .WithMany("Tbl_DetalleOrdens")
+                        .HasForeignKey("Tbl_Combomenu_id");
+
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Orden", "Tbl_Orden")
+                        .WithMany("Tbl_DetalleOrdens")
+                        .HasForeignKey("Tbl_Ordenorden_id");
+
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Producto", "Tbl_Producto")
+                        .WithMany("Tbl_DetalleOrdens")
+                        .HasForeignKey("Tbl_Productoproducto_id");
+
+                    b.Navigation("Tbl_Combo");
+
+                    b.Navigation("Tbl_Orden");
+
+                    b.Navigation("Tbl_Producto");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Orden", b =>
                 {
-                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Documento", null)
-                        .WithMany("tbl_Orden")
-                        .HasForeignKey("tbl_Documentodocumento_id");
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Documento", "Tbl_Documento")
+                        .WithMany("Tbl_Orden")
+                        .HasForeignKey("Tbl_Documentodocumento_id");
 
-                    b.HasOne("FastFoodRestaurant.Entidades.tbl_MetodoPago", null)
-                        .WithMany("tbl_Orden")
-                        .HasForeignKey("tbl_MetodoPagometodoPago_id");
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_MetodoPago", "Tbl_MetodoPago")
+                        .WithMany("Tbl_Orden")
+                        .HasForeignKey("Tbl_MetodoPagometodoPago_id");
+
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_User", "Tbl_User")
+                        .WithMany("Tbl_Orden")
+                        .HasForeignKey("Tbl_Userusuario_id");
+
+                    b.Navigation("Tbl_Documento");
+
+                    b.Navigation("Tbl_MetodoPago");
+
+                    b.Navigation("Tbl_User");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Producto", b =>
                 {
-                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Menu", null)
-                        .WithMany("tbl_Producto")
-                        .HasForeignKey("tbl_Menumenu_id");
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_Menu", "Tbl_Menu")
+                        .WithMany("Tbl_Producto")
+                        .HasForeignKey("Tbl_Menumenu_id");
+
+                    b.Navigation("Tbl_Menu");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_User", b =>
                 {
+                    b.HasOne("FastFoodRestaurant.Entidades.tbl_RolUsuario", "Tbl_RolUsuario")
+                        .WithMany("Tbl_User")
+                        .HasForeignKey("Tbl_RolUsuariorolUser_id");
+
                     b.HasOne("FastFoodRestaurant.Entidades.tbl_Domicilio", null)
-                        .WithMany("tbl_User")
+                        .WithMany("Tbl_User")
                         .HasForeignKey("tbl_Domiciliodomicilio_id");
 
-                    b.HasOne("FastFoodRestaurant.Entidades.tbl_RolUsuario", null)
-                        .WithMany("tbl_User")
-                        .HasForeignKey("tbl_RolUsuariorol_id");
+                    b.Navigation("Tbl_RolUsuario");
+                });
+
+            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Combo", b =>
+                {
+                    b.Navigation("Tbl_Carritos");
+
+                    b.Navigation("Tbl_DetalleCombos");
+
+                    b.Navigation("Tbl_DetalleOrdens");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Documento", b =>
                 {
-                    b.Navigation("tbl_Orden");
+                    b.Navigation("Tbl_Orden");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Domicilio", b =>
                 {
-                    b.Navigation("tbl_User");
+                    b.Navigation("Tbl_User");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Menu", b =>
                 {
-                    b.Navigation("tbl_Combo");
-
-                    b.Navigation("tbl_Producto");
+                    b.Navigation("Tbl_Producto");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_MetodoPago", b =>
                 {
-                    b.Navigation("tbl_Orden");
+                    b.Navigation("Tbl_Orden");
+                });
+
+            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Orden", b =>
+                {
+                    b.Navigation("Tbl_DetalleOrdens");
+                });
+
+            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_Producto", b =>
+                {
+                    b.Navigation("Tbl_Carritos");
+
+                    b.Navigation("Tbl_DetalleCombos");
+
+                    b.Navigation("Tbl_DetalleOrdens");
                 });
 
             modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_RolUsuario", b =>
                 {
-                    b.Navigation("tbl_User");
+                    b.Navigation("Tbl_User");
+                });
+
+            modelBuilder.Entity("FastFoodRestaurant.Entidades.tbl_User", b =>
+                {
+                    b.Navigation("Tbl_Carrito");
+
+                    b.Navigation("Tbl_Orden");
                 });
 #pragma warning restore 612, 618
         }

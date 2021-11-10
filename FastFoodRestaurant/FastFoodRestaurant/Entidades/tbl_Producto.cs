@@ -25,7 +25,14 @@ namespace FastFoodRestaurant.Entidades
         public string estadoProducto { get; set; }
 
         public int menu_Fk { get; set; }
-      
+
+        public tbl_Menu Tbl_Menu { get; set; }
+
+        public IEnumerable<tbl_DetalleCombo> Tbl_DetalleCombos { get; set; }
+        public IEnumerable<tbl_Carrito> Tbl_Carritos { get; set; }
+        public IEnumerable<tbl_DetalleOrden> Tbl_DetalleOrdens { get; set; }
+
+
 
 
     }
