@@ -27,51 +27,51 @@ namespace RestaurantOnline.Controllers
             return View();
         }
 
-        [BindProperties ]
-        public async Task<IActionResult> Log(tbl_User User)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new JObject()
-                {
+        //[BindProperties ]
+        //public async Task<IActionResult> Log(tbl_User User)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(new JObject()
+        //        {
 
-                    {"  StatusCode",400 },
+        //            {"  StatusCode",400 },
 
-                    {"Message", "Error"}
-                });
-            }
-            else
-            {
-                var Result = await db.tbl_User.Where(x => x.correoU == User.correoU).SingleOrDefaultAsync();
+        //            {"Message", "Error"}
+        //        });
+        //    }
+        //    else
+        //    {
+        //        var Result = await db.tbl_User.Where(x => x.correoU == User.correoU).SingleOrDefaultAsync();
 
-                if (Result==null)
-                {
-                    return NotFound(new JObject()
-                    {
+        //        if (Result==null)
+        //        {
+        //            return NotFound(new JObject()
+        //            {
 
-                    {"  StatusCode",404 },
+        //            {"  StatusCode",404 },
 
-                    {"Message", "Usuario no encontrado"}
+        //            {"Message", "Usuario no encontrado"}
 
-                    });
-                }
-                else
-                {
-                    if (HashHelper.CheckHash(User.contraU, Result.contraU, Result.encryptionU))
-                    {
-                        var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-                        identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, Result.IdUsuario.ToString()));
-                        identity.AddClaim(new Claim(ClaimTypes.Name, result.Nombre));
-                        identity.AddClaim(new Claim(ClaimTypes.Email, "jose.jairo.fuentes@gmail.com"));
-                        identity.AddClaim(new Claim("Dato", "Valor"));
-                    }
-                }
+        //            });
+        //        }
+        //        else
+        //        {
+        //            if (HashHelper.CheckHash(User.contraU, Result.contraU, Result.encryptionU))
+        //            {
+        //                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+        //                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, Result.IdUsuario.ToString()));
+        //                identity.AddClaim(new Claim(ClaimTypes.Name, result.Nombre));
+        //                identity.AddClaim(new Claim(ClaimTypes.Email, "jose.jairo.fuentes@gmail.com"));
+        //                identity.AddClaim(new Claim("Dato", "Valor"));
+        //            }
+        //        }
 
-            }
+        //    }
 
 
 
-        }
+        //}
            
 
 
