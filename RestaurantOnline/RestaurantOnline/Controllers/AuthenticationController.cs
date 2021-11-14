@@ -30,76 +30,28 @@ namespace RestaurantOnline.Controllers
         public IActionResult Log(tbl_User users)
         {
             var log = db.tbl_User.Where(a => a.correoU.Equals(users.correoU)).FirstOrDefault();
-                     
+
             if (log != null)
             {
-                if(HashHelper.CheckHash(users.contraU, log.contraU, log.encryptionU))
+                if (HashHelper.CheckHash(users.contraU, log.contraU, log.encryptionU))
                 {
                     return Redirect("/Home/Index");
                 }
                 else
                 {
-                    return View();
+
+                    return View("LogIn");
                 }
 
             }
             else
             {
+                string mens = "El usuario no existe";
+                ViewBag.alert1 = mens;
                 return View("LogIn");
+                //return ViewBag();
             }
         }
-
-        //[BindProperty]
-        //public tbl_User users { get; set; }
-        //public async Task<IActionResult> Log()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(new JObject()
-        //        {
-        //            {"StatusCode", 400 },
-        //            {"Message", "El usuario Existe"}
-        //        });
-        //    }
-        //    else
-        //    {
-        //        var result = await db.tbl_User.Where(x => x.correoU == users.correoU).SingleOrDefaultAsync();
-
-        //        if (result == null)
-        //        {
-        //            return NotFound(new JObject()
-        //            {
-        //                {"StatusCode", 404},
-        //                {"Message", "Usuario no encontrado"}
-
-        //            });
-        //        }
-        //        else
-        //        {
-        //            if (HashHelper.CheckHash(users.contraU, result.contraU, result.encryptionU))
-        //            {
-        //                //var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-        //                //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, result.IdUsuario.ToString()));
-        //                //identity.AddClaim(new Claim(ClaimTypes.Name, result.Nombre));
-        //                //identity.AddClaim(new Claim(ClaimTypes.Email, "jose.jairo.fuentes@gmail.com"));
-        //                //identity.AddClaim(new Claim("Dato", "Valor"));
-        //                //var principal = new ClaimsPrincipal(identity);
-        //                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
-        //                //    new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(2), IsPersistent = true });
-        //                return Ok(/*result*/) /*Redirect("/Home/Index")*/;
-        //            }
-        //            else
-        //            {
-        //                var response = new JObject() {
-        //                    { "StatusCode", 403 },
-        //                    { "Message", "Usuario o contraseña no válida." }
-        //                };
-        //                return StatusCode(403, response);
-        //            }
-        //        }
-        //    }
-
-        //}
 
 
         [BindProperty]
@@ -139,3 +91,55 @@ namespace RestaurantOnline.Controllers
 
     }
 }
+
+//[BindProperty]
+//public tbl_User users { get; set; }
+//public async Task<IActionResult> Log()
+//{
+//    if (!ModelState.IsValid)
+//    {
+//        return BadRequest(new JObject()
+//        {
+//            {"StatusCode", 400 },
+//            {"Message", "El usuario Existe"}
+//        });
+//    }
+//    else
+//    {
+//        var result = await db.tbl_User.Where(x => x.correoU == users.correoU).SingleOrDefaultAsync();
+
+//        if (result == null)
+//        {
+//            return NotFound(new JObject()
+//            {
+//                {"StatusCode", 404},
+//                {"Message", "Usuario no encontrado"}
+
+//            });
+//        }
+//        else
+//        {
+//            if (HashHelper.CheckHash(users.contraU, result.contraU, result.encryptionU))
+//            {
+//                //var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+//                //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, result.IdUsuario.ToString()));
+//                //identity.AddClaim(new Claim(ClaimTypes.Name, result.Nombre));
+//                //identity.AddClaim(new Claim(ClaimTypes.Email, "jose.jairo.fuentes@gmail.com"));
+//                //identity.AddClaim(new Claim("Dato", "Valor"));
+//                //var principal = new ClaimsPrincipal(identity);
+//                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+//                //    new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(2), IsPersistent = true });
+//                return Ok(/*result*/) /*Redirect("/Home/Index")*/;
+//            }
+//            else
+//            {
+//                var response = new JObject() {
+//                    { "StatusCode", 403 },
+//                    { "Message", "Usuario o contraseña no válida." }
+//                };
+//                return StatusCode(403, response);
+//            }
+//        }
+//    }
+
+//}
