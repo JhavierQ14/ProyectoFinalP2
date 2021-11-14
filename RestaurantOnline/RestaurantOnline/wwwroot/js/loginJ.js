@@ -10,49 +10,27 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
-
-$(document).on('submit', '#Succes', function (e) {
-    e.preventDefault();
-    $.ajax({
-        beforeSend: function () {
-            $('#Succes button[type=submit]').prop('disabled', true);
+$(document).ready(function () {
+    $("#Log").validate({
+        rules: {
+            correoU: {
+                required: true,
+                email: true
+            },
+            contraU: {
+                required: true,               
+            },
+            
         },
-        type: 'POST',
-        url: '/Authentication/Succes/',
-        data: $(this.#Succes).serialize(),
-        success: function (data) {
-            alert('Usuario registrado con éxito.');
-        },
-        error: function (xhr, status) {
-            alert(xhr.responseJSON.Message);
-        },
-        complete: function () {
-            $('#Succes button[type=submit]').prop('disabled', false);
+        messages: {
+            correoU: {
+                required: "Ingrese su correo",
+                email: "Debe ingresar un correo"
+            },
+            contraU: {
+                required: "Ingrese su password",
+            }
         }
     });
 });
 
-$(document).on('submit', '#Log', function (e) {
-    e.preventDefault();
-    $.ajax({
-
-        beforeSend: function () {
-            $('#Log button[type=submit]').prop('disabled', true);
-        },
-
-        type: this.method,
-        url: this.action,
-        data: $(this).serialize(),
-        success: function (data) {
-            alert('Bienvenido' + data.nombreU);
-        },
-
-        error: function (xhr, status) {
-            alert(xhr.responseJSON.Message);
-        },
-
-        complete: function () {
-            $('#Log button[type=submit]').prop('disabled', false);
-        }
-    });
-});

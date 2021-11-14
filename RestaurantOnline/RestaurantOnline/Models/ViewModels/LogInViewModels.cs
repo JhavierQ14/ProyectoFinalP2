@@ -8,20 +8,24 @@ namespace RestaurantOnline.Models.ViewModels
 {
     public class LogInViewModels
     {
-        [Key]
+        
         public int usuario_id { get; set; }
 
+        [Display(Name = "nombreU")]
         [Required(ErrorMessage = "Escriba su nombre.")]
         public string nombreU { get; set; }
 
+        [Display(Name = "apellidoU")]
         [Required(ErrorMessage = "Escriba su apellido.")]
         public string apellidoU { get; set; }
 
         public int? telefonoU { get; set; }
 
+        [Display(Name = "correoU")]
         [Required(ErrorMessage = "Escriba el nombre de usuario.")]
         public string correoU { get; set; }
 
+        [Display(Name = "contraU")]
         [Required(ErrorMessage = "Escriba su clave")]
         [MinLength(8, ErrorMessage = "Escriba al menos 8 caracteres.")]
         [MaxLength(50, ErrorMessage = "Escriba un máximo de 50 caracteres.")]

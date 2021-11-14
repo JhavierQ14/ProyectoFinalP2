@@ -6,9 +6,10 @@
   box-sizing: border-box;
 }
 
+
 body,
 input {
-  font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .container {
@@ -66,11 +67,17 @@ form.sign-in-form {
   margin-bottom: 10px;
 }
 
+span.field-validation-error {
+    width: max-content;
+    font-size: smaller;
+    color: red;
+}
+
 .input-field {
   max-width: 380px;
   width: 100%;
   background-color: #f0f0f0;
-  margin: 10px 0;
+  margin: 20px 0;
   height: 55px;
   border-radius: 55px;
   display: grid;
@@ -398,3 +405,4 @@ form.sign-in-form {
     left: 50%;
   }
 }
+

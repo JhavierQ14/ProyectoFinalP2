@@ -4,15 +4,15 @@
 // Write your JavaScript code.
 
 
-$(document).on('submit', '#Save', function (e) {
+$(document).on('submit', '#Succes', function (e) {
     e.preventDefault();
     $.ajax({
         beforeSend: function () {
-            $('#Save button[type=submit]').prop('disabled', true);
+            $('#Succes button[type=submit]').prop('disabled', true);
         },
-        type: this.method,
-        url: this.action,
-        data: $(this).serialize(),
+        type: 'POST',
+        url: '/Authentication/Succes/',
+        data: $('#Succes').serialize(),
         success: function (data) {
             alert('Usuario registrado con éxito.');
         },
@@ -20,7 +20,28 @@ $(document).on('submit', '#Save', function (e) {
             alert(xhr.responseJSON.Message);
         },
         complete: function () {
-            $('#Save button[type=submit]').prop('disabled', false);
+            $('#Succes button[type=submit]').prop('disabled', false);
+        }
+    });
+});
+
+$(document).on('submit', '#Login', function (e) {
+    e.preventDefault();
+    $.ajax({
+        beforeSend: function () {
+            $('#Login button[type=submit]').prop('disabled', true);
+        },
+        type: this.method,
+        url: this.action,
+        data: $(this).serialize(),
+        success: function (data) {
+            alert('Bienvenido ' + data.nombre);
+        },
+        error: function (xhr, status) {
+            alert(xhr.responseJSON.Message);
+        },
+        complete: function () {
+            $('#Login button[type=submit]').prop('disabled', false);
         }
     });
 });
