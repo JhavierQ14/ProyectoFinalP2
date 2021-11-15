@@ -10,7 +10,7 @@ using RestaurantOnline.Data;
 namespace RestaurantOnline.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211113191319_Migrations")]
+    [Migration("20211115215700_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -302,8 +302,8 @@ namespace RestaurantOnline.Migrations
                     b.Property<string>("nombreProducto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("precioP")
-                        .HasColumnType("float");
+                    b.Property<string>("precioP")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("producto_id");
 
@@ -338,18 +338,23 @@ namespace RestaurantOnline.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("apellidoU")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("contraU")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("correoU")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("encryptionU")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombreU")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("rolUser_Fk")

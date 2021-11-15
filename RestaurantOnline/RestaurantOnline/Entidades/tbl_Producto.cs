@@ -18,7 +18,7 @@ namespace RestaurantOnline.Entidades
 
         public string nombreProducto { get; set; }
 
-        public double precioP { get; set; }
+        public string precioP { get; set; }
 
         public DateTime fechaCreacionP  { get; set; }
 
