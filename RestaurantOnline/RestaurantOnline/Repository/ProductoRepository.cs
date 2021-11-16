@@ -28,7 +28,7 @@ namespace RestaurantOnline.Repository
             app.SaveChanges();
         }
 
-        public ICollection<tbl_Producto> producto()
+        public List<tbl_Producto> ListofP()
         {
             return app.tbl_Producto.ToList();
         }

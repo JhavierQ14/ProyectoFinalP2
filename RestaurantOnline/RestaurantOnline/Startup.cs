@@ -40,6 +40,7 @@ namespace RestaurantOnline
 
             services.AddDbContext<ApplicationDbContext>(optios => optios.UseSqlServer(Configuration.GetConnectionString("DefaultConection")));
             services.AddTransient<IUsuario, UsuarioRepository>();
+            services.AddTransient<IProducto, ProductoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

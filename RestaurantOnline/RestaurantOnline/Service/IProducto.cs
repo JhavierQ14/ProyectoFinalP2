@@ -12,6 +12,6 @@ namespace RestaurantOnline.Service
         void Delete(tbl_Producto producto);
         void Update(tbl_Producto producto);
 
-        ICollection<tbl_Producto> producto();
+        List<tbl_Producto> ListofP();
     }
 }

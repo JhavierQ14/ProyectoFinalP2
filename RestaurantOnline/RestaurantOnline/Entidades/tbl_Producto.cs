@@ -24,6 +24,8 @@ namespace RestaurantOnline.Entidades
 
         public string estadoProducto { get; set; }
 
+        public string imageP { get; set; }
+
         public int menu_Fk { get; set; }
 
         public tbl_Menu Tbl_Menu { get; set; }
