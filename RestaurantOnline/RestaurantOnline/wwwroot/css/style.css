@@ -208,12 +208,12 @@ section {
   background: #fff;
   overflow-y: scroll;
   padding-bottom: 8rem;
-  display: none;
-}
-
-.shopping-cart-container.active {
   display: block;
 }
+
+/*.shopping-cart-container.active {
+  display: ;
+}*/
 
 .shopping-cart-container::-webkit-scrollbar {
   width: 1rem;

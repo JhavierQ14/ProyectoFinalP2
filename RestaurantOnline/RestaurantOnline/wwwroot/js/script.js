@@ -7,14 +7,14 @@
 ////    navbar.classList.remove('active');
 ////}
 
-let cart = document.querySelector('.shopping-cart-container');
+//let cart = document.querySelector('.shopping-cart-container');
 
-document.querySelector('#cart-btn').onclick = () =>{
-    cart.classList.toggle('active');
-    searchForm.classList.remove('active');
-    loginForm.classList.remove('active');
-    navbar.classList.remove('active');
-}
+//document.querySelector('#cart-btn').onclick = () =>{
+//    cart.classList.toggle('active');
+//    searchForm.classList.remove('active');
+//    loginForm.classList.remove('active');
+//    navbar.classList.remove('active');
+//}
 
 //let loginForm = document.querySelector('.login-form-container');
 
