@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
@@ -27,15 +29,24 @@ namespace RestaurantOnline.Controllers
             return View();
         }
 
-        public IActionResult Log(tbl_User users)
+        public async Task<IActionResult> Log(tbl_User users)
         {
-            var log = db.tbl_User.Where(a => a.correoU.Equals(users.correoU)).FirstOrDefault();
+            var log = await db.tbl_User.Where(a => a.correoU.Equals(users.correoU)).FirstOrDefaultAsync();
 
             if (log != null)
             {
                 if (HashHelper.CheckHash(users.contraU, log.contraU, log.encryptionU))
                 {
-                    return Redirect("/Home/Index");
+                    var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, log.usuario_id.ToString()));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, log.nombreU));
+                    identity.AddClaim(new Claim(ClaimTypes.Email, log.correoU));
+                    identity.AddClaim(new Claim("Dato", "Valor"));
+                    var principal = new ClaimsPrincipal(identity);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, 
+                        new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(1), IsPersistent = true });            
+
+                    return Ok(log);
                 }
                 else
                 {
@@ -51,6 +62,12 @@ namespace RestaurantOnline.Controllers
                 return View("LogIn");
                 //return ViewBag();
             }
+        }
+
+        public async Task<IActionResult> LogOt()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/Authentication/LogIn");
         }
 
 

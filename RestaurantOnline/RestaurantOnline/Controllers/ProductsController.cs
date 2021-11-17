@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestaurantOnline.Data;
 using RestaurantOnline.Service;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db;
