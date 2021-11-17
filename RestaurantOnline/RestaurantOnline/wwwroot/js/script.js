@@ -49,4 +49,15 @@ document.querySelector('.home').onmousemove = (e) =>{
 document.querySelector('.home').onmouseleave = () =>{
 
     document.querySelector('.home .home-parallax-img').style.transform = `translateX(0px) translateY(0px)`;
-}   
+}
+
+
+function loader() {
+    document.querySelector('.loader-container').classList.add('fade-out');
+}
+
+function fadeOut() {
+    setInterval(loader, 3000);
+}
+
+window.onload = fadeOut;
