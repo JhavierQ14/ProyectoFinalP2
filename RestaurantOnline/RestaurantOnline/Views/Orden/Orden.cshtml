@@ -1,0 +1,50 @@
+﻿@model List<RestaurantOnline.Entidades.tbl_DetalleOrden>
+@{
+    ViewData["Title"] = "Orden";
+}
+
+<section class="order" id="order">
+
+    <div class="heading">
+        <span>ordena ahora</span>
+        <h3>entrega a domicilio más rápida</h3>
+    </div>
+
+    <div class="icons-container">
+
+        <div class="icons">
+            <img src="~/image/icon-1.png" alt="">
+            <h3>8:00am to 10:00pm</h3>
+        </div>
+
+        <div class="icons">
+            <img src="~/image/icon-2.png" alt="">
+            <h3>+503 23011789</h3>
+        </div>
+
+        <div class="icons">
+            <img src="~/image/icon-3.png" alt="">
+            <h3>El salvador, Chalatenango</h3>
+        </div>
+
+    </div>
+
+    <form action="">
+
+        <div class="inputBox">
+            <span>Cantidad</span>
+            <input type="number" placeholder="numero o pedido" name="" id="">
+        </div>
+
+        <div>
+
+            <div class="inputBox">
+                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1634657187694!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <input type="submit" value="Comprar" class="btn">
+
+    </form>
+
+</section>

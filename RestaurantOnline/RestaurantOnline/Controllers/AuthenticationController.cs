@@ -44,9 +44,9 @@ namespace RestaurantOnline.Controllers
                     identity.AddClaim(new Claim("Dato", "Valor"));
                     var principal = new ClaimsPrincipal(identity);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, 
-                        new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(1), IsPersistent = true });            
+                        new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(1), IsPersistent = true });
 
-                    return Ok(log);
+                    return /*Ok(log);*/  Redirect("/Home/Index");
                 }
                 else
                 {
@@ -100,7 +100,7 @@ namespace RestaurantOnline.Controllers
                     await db.SaveChangesAsync();
                     //user.Clave = "";
                     //user.Sal = "";
-                    return Created($"/Usuarios/{user.usuario_id}", user) /*Redirect("/Authentication/LogIn")*/;
+                    return /*Created($"/Usuarios/{user.usuario_id}", user)*/ Redirect("/Authentication/LogIn");
                 }
             }
         }
@@ -146,7 +146,7 @@ namespace RestaurantOnline.Controllers
 //                //var principal = new ClaimsPrincipal(identity);
 //                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
 //                //    new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(2), IsPersistent = true });
-//                return Ok(/*result*/) /*Redirect("/Home/Index")*/;
+//                return Ok(/*result) /*Redirect("/Home/Index")*/;
 //            }
 //            else
 //            {
