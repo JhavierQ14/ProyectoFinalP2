@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RestaurantOnline.Helper;
 
 namespace RestaurantOnline.Controllers
 {
@@ -29,9 +30,20 @@ namespace RestaurantOnline.Controllers
         {
             tbl_Carrito carrito = new tbl_Carrito();
 
-            carrito.cantidadP = car.cantidadP;
-            carrito.totalP = car.totalP;
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                LoginHelper.GetNameIdentifier(User);
+
+                carrito.cantidadP = 1;
+                carrito.totalP = car.totalP;
+                carrito.usuario_FK = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+                carrito.combo_FK = 0;
+                carrito.producto_Fk = car.producto_Fk;
+
+                icarrito.Insert(carrito);
+            }
+
+            return Redirect("/Products/Menu");
         }
     }
 }

@@ -13,11 +13,8 @@ namespace RestaurantOnline.Entidades
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int carrito_id { get; set; }
-
         public int cantidadP { get; set; }
-
         public double totalP { get; set; }
-
         public int usuario_FK { get; set; }
         public int combo_FK { get; set; }
         public int producto_Fk { get; set; }

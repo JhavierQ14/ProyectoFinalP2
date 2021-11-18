@@ -13,6 +13,8 @@ namespace RestaurantOnline.Service
         void Delete(tbl_User user);
         void Update(tbl_User user);
 
-        ICollection<tbl_User> ListarUsuario();
+        List<tbl_User> ListarUsuario();
+
+        //List<tbl_User> ListEmail(string emailUser);
     }
 }

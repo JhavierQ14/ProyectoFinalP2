@@ -28,10 +28,17 @@ namespace RestaurantOnline.Repository
             app.SaveChanges();
         }
 
-        public ICollection<tbl_User> ListarUsuario()
+        public List<tbl_User> ListarUsuario()
         {
             return app.tbl_User.ToList();
         }
+
+        //public List<tbl_User> ListEmail(string emailUser)
+        //{
+        //    var emailU = app.tbl_User.Where(x => x.correoU == emailUser).SingleOrDefault();
+
+        //    return emailU;
+        //}
 
         public void Update(tbl_User user)
         {
