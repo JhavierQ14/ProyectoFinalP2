@@ -52,6 +52,8 @@ namespace RestaurantOnline
             services.AddTransient<IUsuario, UsuarioRepository>();
             services.AddTransient<IProducto, ProductoRepository>();
             services.AddTransient<ICarrito, CarritoRepository>();
+            services.AddTransient<IOrden, OrdenRepository>();
+            services.AddTransient<IDetalleOrden, DetalleOrdenRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
