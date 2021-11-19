@@ -12,6 +12,6 @@ namespace RestaurantOnline.Service
         void Delete(tbl_Carrito carrito);
         void Update(tbl_Carrito carrito);
 
-        ICollection<tbl_Carrito> carrito();
+        List<tbl_Carrito> listCarrito();
     }
 }

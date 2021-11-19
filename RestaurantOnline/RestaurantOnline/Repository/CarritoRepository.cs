@@ -18,7 +18,7 @@ namespace RestaurantOnline.Repository
             this.app = app;
         }
 
-        public ICollection<tbl_Carrito> carrito()
+        public List<tbl_Carrito> listCarrito()
         {
             return app.tbl_Carrito.ToList();
         }
@@ -39,5 +39,9 @@ namespace RestaurantOnline.Repository
             app.Update(carrito);
             app.SaveChanges();
         }
+
+        //var Car = app.tbl_Carrito.Include(x => x.Tbl_Producto).Include(x => x.Tbl_Combo).Where(x=> x.)
+        //    .ToList();
+
     }
 }

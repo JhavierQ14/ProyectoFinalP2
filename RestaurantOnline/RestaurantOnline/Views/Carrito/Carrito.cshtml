@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<RestaurantOnline.Entidades.tbl_Carrito>
+@{
     Layout = null;
 }
 
@@ -23,74 +24,27 @@
 
         <div class="products-container">
 
-            <h3 class="title">your products</h3>
+            <h3 class="title">Tus Productos</h3>
 
             <div class="box-container">
 
-                <div class="box">
-                    <i class="fas fa-times"></i>
-                    <img src="~/image/menu-1.png" alt="">
-                    <div class="content">
-                        <h3>delicious food</h3>
-                        <span> quantity : </span>
-                        <input type="number" name="" value="1" id="">
-                        <br>
-                        <span> price : </span>
-                        <span class="price"> $40.00 </span>
-                    </div>
-                </div>
+                @foreach (var item in Model)
+                {
 
-                <div class="box">
-                    <i class="fas fa-times"></i>
-                    <img src="~/image/menu-2.png" alt="">
-                    <div class="content">
-                        <h3>delicious food</h3>
-                        <span> quantity : </span>
-                        <input type="number" name="" value="1" id="">
-                        <br>
-                        <span> price : </span>
-                        <span class="price"> $40.00 </span>
+                    <div class="box">
+                        <i class="fas fa-times"></i>
+                        <img src="@*@item.Tbl_Producto.imageP*@" alt="">
+                        <div class="content">
+                            <h3>@*@item.Tbl_Producto.nombreProducto*@</h3>
+                            <span> Cantidad : </span>
+                            <input type="number" name="" value="@item.cantidadP" id="">
+                            <br>
+                            <span> price : </span>
+                            <span class="pr"> @item.totalP</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="box">
-                    <i class="fas fa-times"></i>
-                    <img src="~/image/menu-3.png" alt="">
-                    <div class="content">
-                        <h3>delicious food</h3>
-                        <span> quantity : </span>
-                        <input type="number" name="" value="1" id="">
-                        <br>
-                        <span> price : </span>
-                        <span class="price"> $40.00 </span>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <i class="fas fa-times"></i>
-                    <img src="~/image/menu-4.png" alt="">
-                    <div class="content">
-                        <h3>delicious food</h3>
-                        <span> quantity : </span>
-                        <input type="number" name="" value="1" id="">
-                        <br>
-                        <span> price : </span>
-                        <span class="price"> $40.00 </span>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <i class="fas fa-times"></i>
-                    <img src="~/image/menu-5.png" alt="">
-                    <div class="content">
-                        <h3>delicious food</h3>
-                        <span> quantity : </span>
-                        <input type="number" name="" value="1" id="">
-                        <br>
-                        <span> price : </span>
-                        <span class="price"> $40.00 </span>
-                    </div>
-                </div>
+                }
 
             </div>
 
@@ -98,7 +52,7 @@
 
         <div class="cart-total">
 
-            <h3 class="title"> cart total </h3>
+            <h3 class="title"> Precio total </h3>
 
             <div class="box">
 
