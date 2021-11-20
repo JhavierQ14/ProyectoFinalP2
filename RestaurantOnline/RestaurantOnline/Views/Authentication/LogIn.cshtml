@@ -6,15 +6,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    @*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
-    @*<script src="sweetalert2.min.js"></script>
-        <link rel="stylesheet" href="sweetalert2.min.css">*@
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/loginStyle.css" />
+
     <title>LogIn</title>
 </head>
 <body>
@@ -36,7 +35,7 @@
 
                 </form>
 
-                <form method="post" asp-action="Succes" asp-controller="Authentication" class="sign-up-form" id="Save">
+                <form method="post" asp-action="Succes" asp-controller="Authentication" class="sign-up-form" id="Succes">
                     <h2 class="title animate__animated animate__fadeInDown">Registrarse</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -100,72 +99,39 @@
     </div>
 
     <script src="~/js/loginJ.js"></script>
-    @*<script src="~/js/site.js"></script>*@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
-    
-
-    @*<script>
-        var mensaje = "@ViewBag.alert1";
-        alert(mensaje);
-        //function mostrar() {
-        //    swal(mensaje, 'Registrece', 'error')
-        //}
-    </script>*@
-
-
-
-    @section scripts{
-
-
-            <script>$(document).on('submit', '#Log', function (e) {
-                    e.preventDefault();
-                    $.ajax({
-                        beforeSend: function () {
-                            $('#Log button[type=submit]').prop('disabled', true);
-                        },
-                        type: this.method,
-                        url: this.action,
-                        data: $(this).serialize(),
-                        success: function (data) {
-                            alert('Bienvenido');
-                        },
-                        error: function (xhr, status) {
-                            alert(xhr.responseJSON.Message);
-                        },
-                        complete: function () {
-                            $('#Log button[type=submit]').prop('disabled', false);
-                        }
-                    });
-                });</script>
-
-
-        @*<script>
-            $(document).on('submit', '#Save', function (e) {
+        
+        <script>$(document).on('submit', '#Succes', function (e) {
                 e.preventDefault();
                 $.ajax({
                     beforeSend: function () {
-                        $('#Save button[type=submit]').prop('disabled', true);
+                        $('#Succes input[type=submit]').prop('disabled', true);
                     },
                     type: 'POST',
                     url: '/Authentication/Succes/',
-                    data: $('#Save').serialize(),
+                    data: $('#Succes').serialize(),
                     success: function (data) {
-                        alert('Usuario registrado con éxito.');
+                        /*alert('Usuario registrado con éxito.');*/
+                        swal({
+                            title: "Usuario",
+                            text: "Registrado ccon exito",
+                            type: "success"
+                        }),
+                            window.location = '/Authentication/LogIn/';
                     },
                     error: function (xhr, status) {
                         alert(xhr.responseJSON.Message);
                     },
                     complete: function () {
-                        $('#Save button[type=submit]').prop('disabled', false);
+                        $('#Succes input[type=submit]').prop('disabled', false);
                     }
                 });
-            });
-        </script>*@
-        }
+            });</script>
+
 
 </body>
 </html>

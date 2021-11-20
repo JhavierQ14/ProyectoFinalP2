@@ -28,6 +28,11 @@ namespace RestaurantOnline.Repository
             app.SaveChanges();
         }
 
+        public List<tbl_Orden> LastOfOrder()
+        {
+            return app.tbl_Orden.ToList();
+        }
+
         public ICollection<tbl_Orden> Orden()
         {
             return app.tbl_Orden.ToList();

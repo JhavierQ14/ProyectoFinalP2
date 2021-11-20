@@ -14,6 +14,27 @@ namespace RestaurantOnline.Controllers
         private IDetalleOrden idetalleOrden;
         private ApplicationDbContext db;
 
+        int LastID;
+
+        void ultimocorrelativoventa()
+        {
+
+            var consultaultimaventa = iorden.LastOfOrder();
+            int lista = 0;
+
+            foreach (var list in consultaultimaventa)
+            {
+                lista = list.orden_id;
+            }
+
+
+
+            lista++;
+            LastID = lista;
+
+
+        }
+
         public OrdenController(ApplicationDbContext db, IOrden iorden, IDetalleOrden idetalleOrden)
         {
             this.db = db;

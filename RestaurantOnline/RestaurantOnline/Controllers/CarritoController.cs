@@ -24,16 +24,16 @@ namespace RestaurantOnline.Controllers
         public IActionResult Carrito()
         {
             var carritolist = icarrito.listCarrito();
-            var carritoUnion = (from union in carritolist
-                                select new
-                                {  
-                                union.Tbl_Producto.imageP,
-                                union.Tbl_Producto.nombreProducto,
-                                union.cantidadP,
-                                union.totalP
-                                }).ToList();
+            //var carritoUnion = (from union in carritolist
+            //                    select new
+            //                    {  
+            //                    union.Tbl_Producto.imageP,
+            //                    union.Tbl_Producto.nombreProducto,
+            //                    union.cantidadP,
+            //                    union.totalP
+            //                    }).ToList();
 
-                          return View(carritoUnion);
+                          return View(carritolist);
         }
 
         public IActionResult Guardar(tbl_Carrito car)

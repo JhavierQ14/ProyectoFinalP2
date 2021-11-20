@@ -13,5 +13,7 @@ namespace RestaurantOnline.Service
         void Update(tbl_Orden orden);
 
         ICollection<tbl_Orden> Orden();
+
+        List<tbl_Orden> LastOfOrder();
     }
 }

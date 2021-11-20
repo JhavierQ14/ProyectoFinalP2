@@ -61,7 +61,6 @@ namespace RestaurantOnline.Controllers
                 string mens = "El usuario no existe";
                 ViewBag.alert1 = mens;
                 return View("LogIn");
-                //return ViewBag();
             }
         }
 
@@ -80,16 +79,13 @@ namespace RestaurantOnline.Controllers
             var result = await db.tbl_User.Where(x => x.correoU == user.correoU).SingleOrDefaultAsync();
             if (result != null)
             {
-                return NotFound(new JObject() {
-                    { "StatusCode", 400 },
-                    { "Message", "El usuario ya existe, seleccione otro." }
-                });
+                return BadRequest(new JObject(){{ "StatusCode", 400 },{ "Message", "El usuario ya existe, seleccione otro." }});
             }
             else
             {
                 if (!ModelState.IsValid)
                 {
-                    return NotFound(ModelState.SelectMany(x => x.Value.Errors.Select(y => y.ErrorMessage)).ToList());
+                    return BadRequest(ModelState.SelectMany(x => x.Value.Errors.Select(y => y.ErrorMessage)).ToList());
                 }
                 else
                 {
@@ -101,12 +97,10 @@ namespace RestaurantOnline.Controllers
                     await db.SaveChangesAsync();
                     //user.Clave = "";
                     //user.Sal = "";
-                    return /*Created($"/Usuarios/{user.usuario_id}", user)*/ Redirect("/Authentication/LogIn");
+                    return Created($"/Usuarios/{user.usuario_id}", user) /*Redirect("/Authentication/LogIn")*/;
                 }
             }
         }
-
-
     }
 }
 
