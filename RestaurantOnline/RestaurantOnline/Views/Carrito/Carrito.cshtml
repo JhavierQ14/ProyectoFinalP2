@@ -31,18 +31,19 @@
                 @foreach (var item in Model)
                 {
 
-                    <div class="box">
-                        <i class="fas fa-times"></i>
-                        <img src="@*@item.Tbl_Producto.imageP*@" alt="">
-                        <div class="content">
-                            <h3>@item.TblProducto.nombreProducto</h3>
-                            <span> Cantidad : </span>
-                            <input type="number" name="" value="@item.cantidadP" id="">
-                            <br>
-                            <span> price : </span>
-                            <span class="pr"> @item.totalP</span>
-                        </div>
+                <div class="box">
+                    @Html.ActionLink("Eliminar", "Eliminar", "Carrito", new { carrito_id = item.carrito_id }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Actualizar", "Eliminar", "Carrito", new { carrito_id = item.carrito_id }, new { @class = "btn btn-danger" })
+                    <img src="@item.TblProducto.imageP" alt="">
+                    <div class="content">
+                        <h3>@item.TblProducto.nombreProducto</h3>
+                        <span> Cantidad : </span>
+                        <input type="number" name="" value="@item.cantidadP" id="">
+                        <br>
+                        <span> price : </span>
+                        <span class="pr"> @item.totalP</span>
                     </div>
+                </div>
 
                 }
 

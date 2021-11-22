@@ -12,7 +12,7 @@ namespace RestaurantOnline.Entidades
     {
         public tbl_Combo()
         {
-            this.TblCarritoes = new List<tbl_Carrito>();
+            //this.TblCarritoes = new List<tbl_Carrito>();
             this.TblDetalleComboes = new List<tbl_DetalleCombo>();
             this.TblDetalleOrdens = new List<tbl_DetalleOrden>();
         }
@@ -29,7 +29,7 @@ namespace RestaurantOnline.Entidades
         [MaxLength]
         public string estadoCombo { get; set; }
 
-        public List<tbl_Carrito> TblCarritoes { get; set; }
+        //public List<tbl_Carrito> TblCarritoes { get; set; }
         public List<tbl_DetalleCombo> TblDetalleComboes { get; set; }
         public List<tbl_DetalleOrden> TblDetalleOrdens { get; set; }
     }

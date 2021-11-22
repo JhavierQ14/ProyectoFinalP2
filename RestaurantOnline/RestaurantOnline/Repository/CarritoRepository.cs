@@ -25,18 +25,6 @@ namespace RestaurantOnline.Repository
                 .Include(x => x.TblProducto)
                 .ToList();
 
-            //var listado = (from carrito in app.tbl_Carrito
-            //               from producto in app.tbl_Producto
-            //where (carrito.producto_Fk == producto.producto_id)
-            //select new
-            //{
-            //    producto.imageP,
-            //    producto.nombreProducto,
-            //    carrito.cantidadP,
-            //    carrito.totalP,
-
-            //}).ToList();
-
 
             return Car;
         }
@@ -44,6 +32,7 @@ namespace RestaurantOnline.Repository
         public void Delete(tbl_Carrito carrito)
         {
             app.tbl_Carrito.Remove(carrito);
+            app.SaveChanges();
         }
 
         public void Insert(tbl_Carrito carrito)

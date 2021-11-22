@@ -56,6 +56,19 @@ namespace RestaurantOnline.Controllers
             return Redirect("/Products/Menu");
         }
 
+        public IActionResult Eliminar(tbl_Carrito car)
+        {
+
+            int IdCar = car.carrito_id;
+            tbl_Carrito deleteI = db.tbl_Carrito.Where(x => x.carrito_id == IdCar).FirstOrDefault();
+
+
+            icarrito.Delete(deleteI);
+
+            return Redirect("/Carrito/Carrito");
+        }
+        
+
    
       
         

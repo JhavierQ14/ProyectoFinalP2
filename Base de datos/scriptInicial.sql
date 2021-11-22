@@ -24,14 +24,14 @@ create table tbl_Documento(
  nombreDocumento nvarchar(max)
 );
 
-create table tbl_Combo(
-combo_id int primary key identity(1,1) not null,
-codCombo nvarchar(max),
-nombreCombo nvarchar(max),
-precioC decimal(18,2),
-fechaCreacionC datetime default(getdate()),
-estadoCombo nvarchar(max)
-);
+--create table tbl_Combo(
+--combo_id int primary key identity(1,1) not null,
+--codCombo nvarchar(max),
+--nombreCombo nvarchar(max),
+--precioC decimal(18,2),
+--fechaCreacionC datetime default(getdate()),
+--estadoCombo nvarchar(max)
+--);
 
 ------------------------------------------------ Tablas Dependientes  -----------------------------------------------------------
 
@@ -50,7 +50,7 @@ create table tbl_Domicilio(
  domicilio_id int primary key identity(1,1) not null,
  ubicacion nvarchar(max),
  referencia nvarchar(max),
- usuario_Fk int references tbl_User(usuario_id) not null
+ usuario_Fk int references tbl_User(usuario_id)
  );
 
 create table tbl_Producto(
@@ -61,25 +61,25 @@ create table tbl_Producto(
  fechaCreacionP datetime default(getdate()),
  estadoProducto nvarchar(max),
  imageP nvarchar(max),
- menu_Fk int references tbl_Menu(menu_id) not null,
+ menu_Fk int references tbl_Menu(menu_id)
  );
 
 
-create table tbl_DetalleCombo(
- detalleCombo_id int primary key identity(1,1) not null,
- descripcion nvarchar(max),
- cantidadP int,
- producto_Fk int references tbl_Producto(producto_id) not null,
- combo_FK int references tbl_Combo(combo_id) not null
- );
+--create table tbl_DetalleCombo(
+-- detalleCombo_id int primary key identity(1,1) not null,
+-- descripcion nvarchar(max),
+-- cantidadP int,
+-- producto_Fk int references tbl_Producto(producto_id),
+-- combo_FK int references tbl_Combo(combo_id)
+-- );
 
 create table tbl_Carrito(
  carrito_id int primary key identity(1,1) not null,
  cantidadP int,
  totalP decimal(18,2),
- usuario_Fk int references tbl_User(usuario_id) not null,
- combo_FK int references tbl_Combo(combo_id) not null,
- producto_Fk int references tbl_Producto(producto_id) not null
+ usuario_Fk int references tbl_User(usuario_id),
+ --combo_FK int references tbl_Combo(combo_id),
+ producto_Fk int references tbl_Producto(producto_id)
  );
 
  create table tbl_Orden(
@@ -87,25 +87,30 @@ create table tbl_Carrito(
  codOrden nvarchar(max),
  fechaOrden datetime default(getdate()),
  estadoOrden nvarchar(max),
- user_FK int references tbl_User(usuario_id) not null,
- metodoPago_FK int references tbl_MetodoPago(metodoPago_id) not null,
- documento_Fk int references tbl_Documento(documento_id) not null
+ user_FK int references tbl_User(usuario_id),
+ metodoPago_FK int references tbl_MetodoPago(metodoPago_id),
+ documento_Fk int references tbl_Documento(documento_id)
  );
 
  create table tbl_DetalleOrden(
  detalleOden_id int primary key identity(1,1) not null,
  cantidad int,
  totalFinal decimal(18,2),
- orden_FK int references tbl_Orden(orden_id) not null,
- combo_FK int references tbl_Combo(combo_id) not null,
- producto_Fk int references tbl_Producto(producto_id) not null
+ orden_FK int references tbl_Orden(orden_id),
+ --combo_FK int references tbl_Combo(combo_id),
+ producto_Fk int references tbl_Producto(producto_id)
  );
 
 
  select * from tbl_User
+ select * from tbl_Carrito
 
 use sistema_ventas;
 alter table tb_detalleventa alter column precio decimal(18,5)
 alter table tb_detalleventa alter column total decimal(18,5)
 
 alter table tb_venta alter column totalventa decimal(18,5)
+
+SELECT tbl_User.nombreU,tbl_User.apellidoU, tbl_RolUsuario.nombreRol
+FROM tbl_User
+INNER JOIN tbl_RolUsuario ON tbl_User.rolUser_Fk = tbl_RolUsuario.rolUser_id;
