@@ -39,12 +39,10 @@ namespace RestaurantOnline.Data
 
         public DbSet<tbl_DetalleOrden> tbl_DetalleOrden { get; set; }
 
-       
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
 
-       
-
-        
-
-        
     }
 }

@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Entidades
 {
+    [Table("tbl_Menu")]
     public class tbl_Menu
     {
+        public tbl_Menu()
+        {
+            this.TblProductoes = new List<tbl_Producto>();
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int menu_id { get; set; }
-
+        [MaxLength]
         public string nombreMenu { get; set; }
 
-        public ICollection<tbl_Producto> Tbl_Producto { get; set; }
-
+        public List<tbl_Producto> TblProductoes { get; set; }
     }
+
 }

@@ -7,22 +7,20 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Entidades
 {
+    [Table("tbl_MetodoPago")]
     public class tbl_MetodoPago
     {
-
+        public tbl_MetodoPago()
+        {
+            this.TblOrdens = new List<tbl_Orden>();
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int metodoPago_id { get; set; }
-
+        [MaxLength]
         public string nombreMetodo { get; set; }
 
-
-
-        public ICollection<tbl_Orden> Tbl_Orden { get; set; }
-
-
-
+        public List<tbl_Orden> TblOrdens { get; set; }
     }
 }

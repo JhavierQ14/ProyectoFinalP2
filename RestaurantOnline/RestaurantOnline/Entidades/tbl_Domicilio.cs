@@ -7,21 +7,20 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Entidades
 {
+    [Table("tbl_Domicilio")]
     public class tbl_Domicilio
     {
-
-
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int domicilio_id { get; set; }
-
+        [MaxLength]
         public string ubicacion { get; set; }
-
+        [MaxLength]
         public string referencia { get; set; }
+        public int usuario_Fk { get; set; }
 
-        public int usuario_Fk { get; set;}
-        //public ICollection<tbl_User> Tbl_User { get; set; }
-
+        [ForeignKey("usuario_Fk")]
+        public tbl_User TblUser { get; set; }
     }
+
 }

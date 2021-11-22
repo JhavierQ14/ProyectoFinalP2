@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Entidades
 {
+    [Table("tbl_DetalleOrden")]
     public class tbl_DetalleOrden
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int detalleOden_id { get; set; }
-
-        public int cantidad { get; set; }
-
-        public double totalFinal { get; set; }
-
+        public int? cantidad { get; set; }
+        public decimal? totalFinal { get; set; }
         public int orden_FK { get; set; }
         public int combo_FK { get; set; }
         public int producto_Fk { get; set; }
 
-        public tbl_Orden Tbl_Orden { get; set; }
+        [ForeignKey("orden_FK")]
+        public tbl_Orden TblOrden { get; set; }
 
-        public tbl_Combo Tbl_Combo { get; set; }
-        public tbl_Producto Tbl_Producto { get; set; }
+        [ForeignKey("combo_FK")]
+        public tbl_Combo TblCombo { get; set; }
 
+        [ForeignKey("producto_Fk")]
+        public tbl_Producto TblProducto { get; set; }
     }
 }

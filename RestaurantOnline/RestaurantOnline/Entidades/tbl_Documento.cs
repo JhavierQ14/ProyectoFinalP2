@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Entidades
 {
+    [Table("tbl_Documento")]
     public class tbl_Documento
     {
+        public tbl_Documento()
+        {
+            this.TblOrdens = new List<tbl_Orden>();
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int documento_id { get; set; }
-
+        [MaxLength]
         public string nombreDocumento { get; set; }
 
-
-
-        public ICollection<tbl_Orden> Tbl_Orden { get; set; }
-
-
+        public List<tbl_Orden> TblOrdens { get; set; }
     }
 }

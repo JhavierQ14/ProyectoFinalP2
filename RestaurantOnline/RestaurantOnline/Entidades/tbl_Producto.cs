@@ -7,35 +7,35 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Entidades
 {
+    [Table("tbl_Producto")]
     public class tbl_Producto
     {
+        public tbl_Producto()
+        {
+            this.TblCarritoes = new List<tbl_Carrito>();
+            this.TblDetalleComboes = new List<tbl_DetalleCombo>();
+            this.TblDetalleOrdens = new List<tbl_DetalleOrden>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int producto_id { get; set; }
-
+        [MaxLength]
         public string codProducto { get; set; }
-
+        [MaxLength]
         public string nombreProducto { get; set; }
-
-        public string precioP { get; set; }
-
-        public DateTime fechaCreacionP  { get; set; }
-
+        public decimal? precioP { get; set; }
+        public DateTime? fechaCreacionP { get; set; }
+        [MaxLength]
         public string estadoProducto { get; set; }
-
+        [MaxLength]
         public string imageP { get; set; }
-
         public int menu_Fk { get; set; }
 
-        public tbl_Menu Tbl_Menu { get; set; }
-
-        public IEnumerable<tbl_DetalleCombo> Tbl_DetalleCombos { get; set; }
-        public IEnumerable<tbl_Carrito> Tbl_Carritos { get; set; }
-        public IEnumerable<tbl_DetalleOrden> Tbl_DetalleOrdens { get; set; }
-
-
-
-
+        [ForeignKey("menu_Fk")]
+        public tbl_Menu TblMenu { get; set; }
+        public List<tbl_Carrito> TblCarritoes { get; set; }
+        public List<tbl_DetalleCombo> TblDetalleComboes { get; set; }
+        public List<tbl_DetalleOrden> TblDetalleOrdens { get; set; }
     }
 }
