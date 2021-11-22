@@ -11,8 +11,8 @@ namespace RestaurantOnline.Entidades
     {
 
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int domicilio_id { get; set; }
 
@@ -21,8 +21,7 @@ namespace RestaurantOnline.Entidades
         public string referencia { get; set; }
 
         public int usuario_Fk { get; set;}
-
-        public ICollection<tbl_User> Tbl_User { get; set; }
+        //public ICollection<tbl_User> Tbl_User { get; set; }
 
     }
 }

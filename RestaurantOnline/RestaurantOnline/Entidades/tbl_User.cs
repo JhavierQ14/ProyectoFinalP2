@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Entidades
 {
+    //[Table("tbl_User")]
     public class tbl_User
     {
 
+        //public tbl_User()
+        //{
+        //    this.TblCarritoes = new List<tbl_Carrito>();
+        //    this.TblDomicilios = new List<tbl_Domicilio>();
+        //    this.TblOrdens = new List<tbl_Orden>();
+        //}
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int usuario_id { get; set; }
 
         [Display(Name = "nombreU")]
@@ -40,9 +48,10 @@ namespace RestaurantOnline.Entidades
 
         public int rolUser_Fk { get; set; }
 
-        public tbl_RolUsuario Tbl_RolUsuario { get; set; }
+        //public tbl_RolUsuario TblRolUsuario { get; set; }
 
-        public ICollection<tbl_Orden> Tbl_Orden { get; set; }
-        public ICollection<tbl_Carrito> Tbl_Carrito { get; set; }
+        //public List<tbl_Carrito> TblCarritoes { get; set; }
+        //public List<tbl_Domicilio> TblDomicilios { get; set; }
+        //public List<tbl_Orden> TblOrdens { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace RestaurantOnline.Entidades
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int menu_id { get; set; }
+        public int combo_id { get; set; }
 
         public string codCombo { get; set; }
 

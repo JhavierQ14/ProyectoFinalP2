@@ -33,7 +33,7 @@ namespace RestaurantOnline.Controllers
             //                    union.totalP
             //                    }).ToList();
 
-                          return View(carritolist);
+            return View(carritolist);
         }
 
         public IActionResult Guardar(tbl_Carrito car)
