@@ -25,6 +25,7 @@ namespace RestaurantOnline.Controllers
         {
             var productList = iproducto.ListofP();
 
+
             return View(productList);
         }
 

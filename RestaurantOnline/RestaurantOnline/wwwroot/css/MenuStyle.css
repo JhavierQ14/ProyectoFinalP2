@@ -444,6 +444,30 @@ header .icons #menu-bars {
                 font-size: 2.5rem;
             }
 
+/*********************************************************************************************************************************************/
+
+.menu ul{
+    display: flex;
+    margin-bottom:10px;
+}
+
+    .menu ul li {
+        list-style: none;
+        background: #4682b4;
+        padding: 8px 20px;
+        margin: 5px;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+
+        .menu ul li.active {
+            background: #20b2aa;
+            color: #fff;
+        }
+
+
+/******************************************************************************************************************************************/
+
 .review .slide {
     padding: 2rem;
     box-shadow: var(--box-shadow);

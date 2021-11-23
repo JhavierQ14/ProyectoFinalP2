@@ -10,18 +10,27 @@
     <title>Menu</title>
 </head>
 <body>
-    <button asp-action="RegresarC" asp-controller="Menu" class="btn btn-success"> Regresar al carrito</button>
+    <button type="button" asp-action="RegresarC" asp-controller="Menu" class="btn btn-success"> Regresar al carrito</button>
     <section class="menu" id="menu">
 
         <h3 class="sub-heading"> Nuestro Menu </h3>
         <h1 class="heading"> Elija Nuestras Especialidades </h1>
+
+        <ul>
+            <li class="list active" data-filter="Todos">Todos</li>
+            <li class="list" data-filter="1">Desayunos</li>
+            <li class="list" data-filter="2">Almuerzos</li>
+            <li class="list" data-filter="3">Cenas</li>
+            <li class="list" data-filter="4">Postres</li>
+            <li class="list" data-filter="5">Bebidas</li>
+        </ul>
 
         <div class="box-container">
 
             @foreach (var item in Model)
             {
 
-                <div class="box">
+                <div class="box @item.menu_Fk">
                     <div class="image">
                         <img src="@item.imageP" alt="">
                     </div>
@@ -44,5 +53,24 @@
         </div>
 
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.list').click(function () {
+                const value = $(this).attr('data-filter');
+                if (value == 'Todos') {
+                    $('.box').show('1000');
+                }
+                else {
+                    $('.box').not('.' + value).hide('1000');
+                    $('.box').filter('.' + value).show('1000');
+                }
+            })
+
+            $('.list').click(function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            })
+        })
+    </script>
 </body>
 </html>
