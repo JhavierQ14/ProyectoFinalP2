@@ -13,37 +13,41 @@
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="~/css/EstiloCarrito.css">
 
 </head>
 <body>
-
+    <button asp-action="Regresar" asp-controller="Carrito" class="btn btn-success"> Regresar</button>
+    @*@Html.ActionLink("Regresar al menú", "Regresar", "Carrito", new { @class = "btn btn-success" })*@
     <section class="shopping-cart-container">
 
         <div class="products-container">
 
             <h3 class="title">Tus Productos</h3>
 
+
             <div class="box-container">
+
 
                 @foreach (var item in Model)
                 {
 
-                <div class="box">
-                    @Html.ActionLink("Eliminar", "Eliminar", "Carrito", new { carrito_id = item.carrito_id }, new { @class = "btn btn-danger" })
-                    @Html.ActionLink("Actualizar", "Eliminar", "Carrito", new { carrito_id = item.carrito_id }, new { @class = "btn btn-danger" })
-                    <img src="@item.TblProducto.imageP" alt="">
-                    <div class="content">
-                        <h3>@item.TblProducto.nombreProducto</h3>
-                        <span> Cantidad : </span>
-                        <input type="number" name="" value="@item.cantidadP" id="">
-                        <br>
-                        <span> price : </span>
-                        <span class="pr"> @item.totalP</span>
+                    <div class="box">
+                        @Html.ActionLink("Eliminar", "Eliminar", "Carrito", new { carrito_id = item.carrito_id }, new { @class = "btn btn-danger" })
+                        @*@Html.ActionLink("Actualizar", "Eliminar", "Carrito", new { carrito_id = item.carrito_id }, new { @class = "btn btn-danger" })*@
+                        <img src="@item.TblProducto.imageP" alt="">
+                        <div class="content">
+                            <h3>@item.TblProducto.nombreProducto</h3>
+                            <span> Cantidad : </span>
+                            <input type="number" name="" value="@item.cantidadP" id="">
+                            <br>
+                            <span> price : </span>
+                            <span class="pr"> @item.totalP</span>
+                        </div>
                     </div>
-                </div>
 
                 }
 

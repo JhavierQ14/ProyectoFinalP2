@@ -67,7 +67,11 @@ namespace RestaurantOnline.Controllers
 
             return Redirect("/Carrito/Carrito");
         }
-        
+        public IActionResult Regresar()
+        {
+
+            return Redirect("/Products/Menu");
+        }
 
    
       
