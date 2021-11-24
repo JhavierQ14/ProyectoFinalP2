@@ -69,12 +69,8 @@ namespace RestaurantOnline.Controllers
         }
         public IActionResult Regresar()
         {
-
             return Redirect("/Products/Menu");
-        }
-
-   
-      
+        }   
         
     }
 }

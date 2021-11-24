@@ -16,12 +16,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="~/css/EstiloCarrito.css">
+    <!--<link rel="stylesheet" href="~/css/EstiloCarrito.css">-->
+    <link rel="stylesheet" href="~/css/EstiloCarrito.css" />
 
 </head>
 <body>
-    <button asp-action="Regresar" asp-controller="Carrito" class="btn btn-success" type="button"> Regresar</button>
-    @*@Html.ActionLink("Regresar al menú", "Regresar", "Carrito", new { @class = "btn btn-success" })*@
+
+    <div id="boton">
+        <a class="btn btn-success" asp-action="Regresar" asp-controller="Carrito">Regresar a Menu</a>
+    </div>
+
+ 
     <section class="shopping-cart-container">
 
         <div class="products-container">
