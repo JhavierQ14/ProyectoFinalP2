@@ -24,14 +24,10 @@ namespace RestaurantOnline.Controllers
         public IActionResult Carrito()
         {
             var carritolist = icarrito.listCarrito();
-            //var carritoUnion = (from union in carritolist
-            //                    select new
-            //                    {  
-            //                    union.Tbl_Producto.imageP,
-            //                    union.Tbl_Producto.nombreProducto,
-            //                    union.cantidadP,
-            //                    union.totalP
-            //                    }).ToList();
+
+            var sumaTotales = carritolist.Sum(x => x.totalP*x.cantidadP);
+
+            ViewBag.Total = sumaTotales;
 
             return View(carritolist);
         }
@@ -56,10 +52,10 @@ namespace RestaurantOnline.Controllers
             return Redirect("/Products/Menu");
         }
 
-        public IActionResult Eliminar(tbl_Carrito car)
+        public IActionResult Eliminar(int id)
         {
 
-            int IdCar = car.carrito_id;
+            int IdCar = id;
             tbl_Carrito deleteI = db.tbl_Carrito.Where(x => x.carrito_id == IdCar).FirstOrDefault();
 
 
