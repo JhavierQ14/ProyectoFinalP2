@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestaurantOnline.Data;
+using RestaurantOnline.Entidades;
 using RestaurantOnline.Service;
 using System;
 using System.Collections.Generic;
@@ -14,39 +15,65 @@ namespace RestaurantOnline.Controllers
         private IDetalleOrden idetalleOrden;
         private ApplicationDbContext db;
 
-        int LastID;
-
-        void ultimocorrelativoventa()
-        {
-
-            var consultaultimaventa = iorden.LastOfOrder();
-            int lista = 0;
-
-            foreach (var list in consultaultimaventa)
-            {
-                lista = list.orden_id;
-            }
-
-
-
-            lista++;
-            LastID = lista;
-
-
-        }
+        public int LastID;
 
         public OrdenController(ApplicationDbContext db, IOrden iorden, IDetalleOrden idetalleOrden)
         {
             this.db = db;
+            this.iorden = iorden;
+            this.idetalleOrden = idetalleOrden;
         }
 
+/***************************************************************************************************************************/
+        void LastOrder()
+        {
+
+            var order = iorden.LastOfOrder();
+            int Id = 0;
+
+            foreach (var list in order)
+            {
+                Id = list.orden_id;
+            }
+
+            Id++;
+            LastID = Id;
+
+        }
+
+/***********************************************************************************************************************/
         public IActionResult Orden()
         {
             return View();
         }
 
-        public IActionResult Venta()
+        public IActionResult Venta(tbl_Orden datosOrden, tbl_DetalleOrden datosDetalle)
         {
+            var Order = new tbl_Orden();
+            var Detalle = new tbl_DetalleOrden();
+
+            try
+            {
+                Order.fechaOrden = DateTime.Now;
+                Order.estadoOrden = datosOrden.estadoOrden;
+                Order.user_FK = datosOrden.user_FK;
+                Order.metodoPago_FK = datosOrden.metodoPago_FK;
+                Order.documento_Fk = datosOrden.documento_Fk;
+
+                iorden.Insert(Order);
+
+                Detalle.cantidad = datosDetalle.cantidad;
+
+                idetalleOrden.Insert(Detalle);
+
+            }
+            catch
+            {
+
+            }
+
+
+
             return View();
 
         }
@@ -56,5 +83,8 @@ namespace RestaurantOnline.Controllers
             return View();
 
         }
+
+
+/***********************************************************************************************************************/
     }
 }

@@ -71,10 +71,10 @@ namespace RestaurantOnline.Controllers
         }
 
 
-        [BindProperty]
-        public tbl_User user { get; set; }
+        //[BindProperty]
+        //public tbl_User user { get; set; }
         [HttpPost]
-        public async Task<IActionResult> Succes()
+        public async Task<IActionResult> Succes(tbl_User user)
         {
             var result = await db.tbl_User.Where(x => x.correoU == user.correoU).SingleOrDefaultAsync();
             if (result != null)
