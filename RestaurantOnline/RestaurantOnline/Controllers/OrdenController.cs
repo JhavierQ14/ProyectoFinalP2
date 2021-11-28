@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestaurantOnline.Data;
 using RestaurantOnline.Entidades;
+using RestaurantOnline.Helper;
 using RestaurantOnline.Service;
 using System;
 using System.Collections.Generic;
@@ -54,15 +55,26 @@ namespace RestaurantOnline.Controllers
 
             try
             {
-                Order.fechaOrden = DateTime.Now;
-                Order.estadoOrden = datosOrden.estadoOrden;
-                Order.user_FK = datosOrden.user_FK;
-                Order.metodoPago_FK = datosOrden.metodoPago_FK;
-                Order.documento_Fk = datosOrden.documento_Fk;
+                if (User.Identity.IsAuthenticated)
+                {
+                    LoginHelper.GetNameIdentifier(User);
 
-                iorden.Insert(Order);
+                    Order.fechaOrden = DateTime.Now;
+                    Order.estadoOrden = datosOrden.estadoOrden;
+                    Order.user_FK = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+                    Order.metodoPago_FK = datosOrden.metodoPago_FK;
+                    Order.documento_Fk = datosOrden.documento_Fk;
+
+                    iorden.Insert(Order);
+
+                }       
 
                 Detalle.cantidad = datosDetalle.cantidad;
+                Detalle.totalFinal = datosDetalle.totalFinal;
+                Detalle.orden_FK = datosDetalle.orden_FK;
+                Detalle.producto_Fk = datosDetalle.producto_Fk;
+                
+
 
                 idetalleOrden.Insert(Detalle);
 

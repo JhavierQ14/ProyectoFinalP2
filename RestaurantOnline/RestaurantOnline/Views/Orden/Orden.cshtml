@@ -1,52 +1,102 @@
-﻿@model List<RestaurantOnline.Entidades.tbl_DetalleOrden>
-@{
-    ViewData["Title"] = "Orden";
+﻿@{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive Food / Resturant Website Design Tutorial</title>
 
-<link rel="stylesheet" href="~/css/style.css">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<section class="order" id="order">
+    <!-- custom css file link  -->
+    <!--<link rel="stylesheet" href="~/css/EstiloCarrito.css">-->
+    <link rel="stylesheet" href="~/css/OrdenStyle.css" />
 
-    <div class="heading">
-        <span>ordena ahora</span>
-        <h3>entrega a domicilio más rápida</h3>
-    </div>
+</head>
+<body>
 
-    <div class="icons-container">
+    <section class="form-register">
+        <h4>Formulario Registro</h4>
+        <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+        <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
+        <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+        <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña">
+        <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+        <input class="botons" type="submit" value="Registrar">
+        <p><a href="#">¿Ya tengo Cuenta?</a></p>
 
-        <div class="icons">
-            <img src="~/image/icon-1.png" alt="">
-            <h3>8:00am to 10:00pm</h3>
-        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-        <div class="icons">
-            <img src="~/image/icon-2.png" alt="">
-            <h3>+503 23011789</h3>
-        </div>
-
-        <div class="icons">
-            <img src="~/image/icon-3.png" alt="">
-            <h3>El salvador, Chalatenango</h3>
-        </div>
-
-    </div>
-
-    <form action="">
-
-        <div class="inputBox">
-            <span>Cantidad</span>
-            <input type="number" placeholder="numero o pedido" name="" id="">
-        </div>
-
-        <div>
-
-            <div class="inputBox">
-                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1634657187694!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        <p class="auto-style3">
+            <input checked="checked" name="pago1" type="radio" value="Ventanilla" />
+            &nbsp;
+            <span class="auto-style4">
+                Pagar en efectivo
+            </span>
+        </p>
+        <p class="auto-style3">
+            <input  name="pago1" type="radio" value="Deposito" />
+            <span class="auto-style4">
+                Pagar con tarjeta
+            </span>
+        </p>
+        <div id="div1" class="checkout_form">
+            <div class="card_number" id="card-container">
+                <input type="text" class="input" id="card" placeholder="0000 0000 0000 0000">
+                <div id="logo"></div>
+            </div>
+            <div class="card_grp">
+                <div class="expiry_date">
+                    <input type="text" class="expiry_input" data-mask="00" placeholder="00">
+                    <input type="text" class="expiry_input" data-mask="00" placeholder="00">
+                </div>
+                <div class="cvc">
+                    <input type="text" class="cvc_input" data-mask="000" placeholder="000">
+                    <div class="cvc_img">
+                        ?
+                        <div class="img">
+                            <img src="https://i.imgur.com/2ameC0C.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn">
+                pay
             </div>
         </div>
 
-        <input type="submit" value="Comprar" class="btn">
+        <div id="div2" style="display:none;">
+            <center>
+                <span>Has seleccionado ventanilla</span>
+            </center>
+        </div>
 
-    </form>
 
-</section>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $("input[type=radio]").click(function (event) {
+                var valor = $(event.target).val();
+                if (valor == "Deposito") {
+                    $("#div1").show();
+                    $("#div2").hide();
+                } else if (valor == "Ventanilla") {
+                    $("#div1").hide();
+                    $("#div2").show();
+                } else {
+                    // Otra cosa
+                }
+            });
+        });
+
+    </script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="~/js/OrdenScrip.js"></script>
+</body>
+</html>
