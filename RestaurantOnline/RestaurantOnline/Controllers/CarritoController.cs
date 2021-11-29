@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RestaurantOnline.Helper;
+using Microsoft.EntityFrameworkCore;
 
 namespace RestaurantOnline.Controllers
 {
@@ -23,13 +24,24 @@ namespace RestaurantOnline.Controllers
         }
         public IActionResult Carrito()
         {
-            var carritolist = icarrito.listCarrito();
+            if (User.Identity.IsAuthenticated)
+            {
+                LoginHelper.GetNameIdentifier(User);
+                var userId = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+                //var carritolist = icarrito.listCarrito();
+                //var sumaTotales = carritolist.Sum(x => x.totalP * x.cantidadP);
+                //ViewBag.Total = sumaTotales;
 
-            var sumaTotales = carritolist.Sum(x => x.totalP*x.cantidadP);
+                var carritolist = db.tbl_Carrito.Include(x => x.TblProducto).Where(x => x.usuario_Fk == userId).ToList();
+                var sumaTotales = carritolist.Sum(x => x.totalP * x.cantidadP);
+                ViewBag.Total = sumaTotales;
 
-            ViewBag.Total = sumaTotales;
-
-            return View(carritolist);
+                return View(carritolist);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Guardar(tbl_Carrito car)

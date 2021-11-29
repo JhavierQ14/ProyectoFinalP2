@@ -53,17 +53,17 @@ namespace RestaurantOnline.Controllers
             var Order = new tbl_Orden();
             var Detalle = new tbl_DetalleOrden();
 
-            try
-            {
+            //try
+            //{
                 if (User.Identity.IsAuthenticated)
                 {
                     LoginHelper.GetNameIdentifier(User);
 
                     Order.fechaOrden = DateTime.Now;
-                    Order.estadoOrden = datosOrden.estadoOrden;
+                    Order.estadoOrden = "Procesando";
                     Order.user_FK = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
-                    Order.metodoPago_FK = datosOrden.metodoPago_FK;
-                    Order.documento_Fk = datosOrden.documento_Fk;
+                    Order.metodoPago_FK = 1;
+                    Order.documento_Fk = 1;
 
                     iorden.Insert(Order);
 
@@ -71,22 +71,22 @@ namespace RestaurantOnline.Controllers
 
                 Detalle.cantidad = datosDetalle.cantidad;
                 Detalle.totalFinal = datosDetalle.totalFinal;
-                Detalle.orden_FK = datosDetalle.orden_FK;
+                Detalle.orden_FK = LastID;
                 Detalle.producto_Fk = datosDetalle.producto_Fk;
                 
 
 
                 idetalleOrden.Insert(Detalle);
 
-            }
-            catch
-            {
+            //}
+            //catch
+            //{
 
-            }
+            //}
 
 
 
-            return View();
+            return Redirect("/Home/Index");
 
         }
 

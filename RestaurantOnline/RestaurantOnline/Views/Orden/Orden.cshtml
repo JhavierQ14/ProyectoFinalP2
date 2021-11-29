@@ -9,75 +9,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complete Responsive Food / Resturant Website Design Tutorial</title>
 
-    <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- custom css file link  -->
-    <!--<link rel="stylesheet" href="~/css/EstiloCarrito.css">-->
     <link rel="stylesheet" href="~/css/OrdenStyle.css" />
 
 </head>
 <body>
 
-    <section class="form-register">
-        <h4>Formulario Registro</h4>
-        <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
-        <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
-        <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
-        <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña">
-        <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
-        <input class="botons" type="submit" value="Registrar">
-        <p><a href="#">¿Ya tengo Cuenta?</a></p>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <section class="order" id="order">
 
-        <p class="auto-style3">
-            <input checked="checked" name="pago1" type="radio" value="Ventanilla" />
-            &nbsp;
-            <span class="auto-style4">
-                Pagar en efectivo
-            </span>
-        </p>
-        <p class="auto-style3">
-            <input  name="pago1" type="radio" value="Deposito" />
-            <span class="auto-style4">
-                Pagar con tarjeta
-            </span>
-        </p>
-        <div id="div1" class="checkout_form">
-            <div class="card_number" id="card-container">
-                <input type="text" class="input" id="card" placeholder="0000 0000 0000 0000">
-                <div id="logo"></div>
-            </div>
-            <div class="card_grp">
-                <div class="expiry_date">
-                    <input type="text" class="expiry_input" data-mask="00" placeholder="00">
-                    <input type="text" class="expiry_input" data-mask="00" placeholder="00">
+        <h3 class="sub-heading"> Ordena  ahora </h3>
+        <h1 class="heading"> Y llegaremos mas rapido de lo que crees </h1>
+
+        <form asp-controller=""  asp-action="">
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>your name</span>
+                    <input type="text" placeholder="enter your name">
                 </div>
-                <div class="cvc">
-                    <input type="text" class="cvc_input" data-mask="000" placeholder="000">
-                    <div class="cvc_img">
-                        ?
-                        <div class="img">
-                            <img src="https://i.imgur.com/2ameC0C.png" alt="">
+                <div class="input">
+                    <span>your number</span>
+                    <input type="number" placeholder="enter your number">
+                </div>
+            </div>
+            <div class="inputBox">
+                <div class="input">
+                    <span>your order</span>
+                    <input type="text" placeholder="enter food name">
+                </div>
+                <div class="input">
+                    <span>additional food</span>
+                    <input type="test" placeholder="extra with food">
+                </div>
+            </div>
+            <div class="inputBox">
+                <div class="input">
+                    <span>how musch</span>
+                    <input type="number" placeholder="how many orders">
+                </div>
+                <div class="input">
+                    <span>date and time</span>
+                    <input type="datetime-local">
+                </div>
+            </div>
+            <div class="inputBox">
+                <div class="input">
+                    <span>your address</span>
+                    <textarea name="" placeholder="enter your address" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="input">
+                    <span>your message</span>
+                    <textarea name="" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
+                </div>
+
+            </div>
+
+            <input type="submit" value="order now" class="btnss">
+
+        </form>
+
+    </section>
+
+
+    @*<section class="form-register">
+            <h4>Formulario Registro</h4>
+            <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+            <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
+            <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+            <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña">
+            <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+            <input class="botons" type="submit" value="Registrar">
+            <p><a href="#">¿Ya tengo Cuenta?</a></p>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+            <p class="auto-style3">
+                <input checked="checked" name="pago1" type="radio" value="Ventanilla" />
+                &nbsp;
+                <span class="auto-style4">
+                    Pagar en efectivo
+                </span>
+            </p>
+            <p class="auto-style3">
+                <input  name="pago1" type="radio" value="Deposito" />
+                <span class="auto-style4">
+                    Pagar con tarjeta
+                </span>
+            </p>
+            <div id="div1" class="checkout_form">
+                <div class="card_number" id="card-container">
+                    <input type="text" class="input" id="card" placeholder="0000 0000 0000 0000">
+                    <div id="logo"></div>
+                </div>
+                <div class="card_grp">
+                    <div class="expiry_date">
+                        <input type="text" class="expiry_input" data-mask="00" placeholder="00">
+                        <input type="text" class="expiry_input" data-mask="00" placeholder="00">
+                    </div>
+                    <div class="cvc">
+                        <input type="text" class="cvc_input" data-mask="000" placeholder="000">
+                        <div class="cvc_img">
+                            ?
+                            <div class="img">
+                                <img src="https://i.imgur.com/2ameC0C.png" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="btn">
+                    pay
+                </div>
             </div>
-            <div class="btn">
-                pay
+
+            <div id="div2" style="display:none;">
+                <center>
+                    <span>Has seleccionado ventanilla</span>
+                </center>
             </div>
-        </div>
-
-        <div id="div2" style="display:none;">
-            <center>
-                <span>Has seleccionado ventanilla</span>
-            </center>
-        </div>
 
 
-    </section>
+        </section>*@
     <script>
         $(document).ready(function () {
             $("input[type=radio]").click(function (event) {
@@ -88,14 +142,12 @@
                 } else if (valor == "Ventanilla") {
                     $("#div1").hide();
                     $("#div2").show();
-                } else {
-                    // Otra cosa
                 }
             });
         });
 
     </script>
- 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="~/js/OrdenScrip.js"></script>
 </body>

@@ -43,7 +43,7 @@
             {
                 <div id="login-btn" class="fas fa-user" onclick="menuToggle();"></div>
                 <div class="menuP">
-                    <h3>@LoginHelper.GetName(User)<br><span>@LoginHelper.GetNameIdentifier(User)</span></h3>
+                    <h3>@LoginHelper.GetName(User)@*<br><span>@LoginHelper.GetNameIdentifier(User)</span>*@</h3>
                     <ul>
                         <li><i class="fas fa-edit"></i> <a href="#">Mi perfil</a></li>
                         <li><i class="fas fa-sign-out-alt"></i> <a asp-action="LogOt" asp-controller="Authentication">Cerrar secion</a></li>

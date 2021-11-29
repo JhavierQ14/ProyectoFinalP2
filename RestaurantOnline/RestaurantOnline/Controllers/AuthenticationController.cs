@@ -37,7 +37,7 @@ namespace RestaurantOnline.Controllers
             {
                 if (HashHelper.CheckHash(users.contraU, log.contraU, log.encryptionU))
                 {
-                    var nameUser = log.nombreU + log.apellidoU;
+                    var nameUser = log.nombreU +" "+ log.apellidoU;
                     var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
                     identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, log.usuario_id.ToString()));
                     identity.AddClaim(new Claim(ClaimTypes.Name, nameUser));

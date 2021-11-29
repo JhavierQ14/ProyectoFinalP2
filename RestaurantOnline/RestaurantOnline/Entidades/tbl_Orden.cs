@@ -30,7 +30,7 @@ namespace RestaurantOnline.Entidades
         [ForeignKey("user_FK")]
         public tbl_User TblUser { get; set; }
 
-        [ForeignKey("metodoPago_id")]
+        [ForeignKey("metodoPago_Fk")]
         public tbl_MetodoPago TblMetodoPago { get; set; }
 
         [ForeignKey("documento_Fk")]

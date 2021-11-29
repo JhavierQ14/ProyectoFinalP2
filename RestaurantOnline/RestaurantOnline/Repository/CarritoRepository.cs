@@ -21,6 +21,7 @@ namespace RestaurantOnline.Repository
 
         public List<tbl_Carrito> listCarrito()
         {
+
             var Car = app.tbl_Carrito
                 .Include(x => x.TblProducto)
                 .ToList();
