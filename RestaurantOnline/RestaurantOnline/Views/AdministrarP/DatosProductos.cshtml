@@ -12,50 +12,51 @@
     <section class="order" id="order">
 
         <h3 class="sub-heading"> Registra un nuevo producto </h3>
-       
-        <form asp-controller="AgregarP" asp-action="Save" >
+
+        @using (Html.BeginForm("Save", "AdministrarP", FormMethod.Post))
+        { 
 
             <div class="inputBox">
                 <div class="input">
-                    <input type="hidden" value="@ViewBag.productoid" type="number">
+                    <input name="producto_id" type="hidden" value="@ViewBag.productoid" type="number">
                 </div>
                 <div class="input">
                     <span> Nombre del producto</span>
-                    <input type="text" placeholder="nombre del producto">
+                    <input name="nombreProducto" type="text" value="@ViewBag.nombreProducto" placeholder="nombre del producto">
                 </div>
                 <div class="input">
                     <span>Precio</span>
-                    <input type="number" placeholder="Ingrese el precio del producto">
+                    <input name="precioP" type="number" value="@ViewBag.preciop" placeholder="Ingrese el precio del producto">
                 </div>
             </div>
-            <div class="inputBox">
-                <div class="input">
-                    <span>Fecha</span>
-                    <input type="text" placeholder="Ingrese la fecha" readonly>
-                </div>
-               
-            </div>
-            <div class="inputBox">
-                <div class="input">
-                    <span>Estado Producto</span>
-                    <input type="text" placeholder="Ingrese el estado del producto">
-                </div>
-                <div class="input">
-                    <span>imagen</span>
-                    <input type="text" placeholder="Ingrese la URL de la imagen">
-                </div>
-            </div>
-            <div class="inputBox">
-                <div class="input">
-                    <span>Menú</span>
-                    <input name="" placeholder="Ingrese el" >
-                </div>
-                
+        @*<div class="inputBox">
+            <div class="input">
+                <span>Fecha</span>
+                <input type="text" placeholder="Ingrese la fecha" readonly>
             </div>
 
-            <input type="submit" value="Agregar" class="btn" >
+        </div>*@
+        <div class="inputBox">
+            <div class="input">
+                <span>Estado Producto</span>
+                <input name="estadoProducto" type="text"  value="@ViewBag.estadoProducto" placeholder="Ingrese el estado del producto">
+            </div>
+            <div class="input">
+                <span>imagen</span>
+                <input name="imageP" type="text" value="@ViewBag.imageP" placeholder="Ingrese la URL de la imagen">
+            </div>
+        </div>
+        <div class="inputBox">
+            <div class="input">
+                <span>Menú</span>
+                <input name="menu_Fk" value="@ViewBag.menuFK" placeholder="Ingrese el número del menú">
+            </div>
 
-        </form>
+        </div>
+
+        <input type="submit" value="Agregar" class="btn">
+
+        }
 
     </section>
 

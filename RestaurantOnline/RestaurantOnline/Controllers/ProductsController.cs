@@ -23,7 +23,7 @@ namespace RestaurantOnline.Controllers
 
         public IActionResult Menu()
         {
-            var productList = iproducto.ListofP();
+            var productList = iproducto.ListVista();
 
 
             return View(productList);

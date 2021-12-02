@@ -33,6 +33,12 @@ namespace RestaurantOnline.Repository
             return app.tbl_Producto.ToList();
         }
 
+        public List<tbl_Producto> ListVista()
+        {
+            var ProductoList = app.tbl_Producto.Where(x => x.estadoProducto == "activo").ToList();
+            return ProductoList;
+        }
+
         public void Update(tbl_Producto producto)
         {
             app.Update(producto);

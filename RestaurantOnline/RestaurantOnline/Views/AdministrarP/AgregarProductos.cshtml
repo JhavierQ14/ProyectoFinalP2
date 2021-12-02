@@ -10,8 +10,6 @@
 </head>
 <body>
 
-
-
     <h1 class="text-center"> Ingresar Productos </h1>
     <br />
     <div class="text-center">
@@ -59,12 +57,12 @@
 
 
 
-                        @*<td>
+                        <td>
 
-                                @Html.ActionLink("Update", "Registrar", new { id = item.StudentId, apellido = item.LastName, nombre = item.FirstMiName, fecha = item.EnrollmentsDate }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.StudentId }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Actualizar", "DatosProductos", new { producto_id = item.producto_id, estadoProducto = item.estadoProducto, nombreProducto = item.nombreProducto, preciop = item.precioP, imageP = item.imageP, menuFK = item.menu_Fk}, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Borrar", "DeleteProduts", new { producto_id = item.producto_id }, new { @class = "btn btn-danger" })
 
-                            </td>*@
+                            </td>
                     </tr>
                 }
             </tbody>

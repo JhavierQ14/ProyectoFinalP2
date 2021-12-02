@@ -40,7 +40,7 @@ namespace RestaurantOnline.Controllers
                 producto.fechaCreacionP = DateTime.Now;
                 producto.estadoProducto = "activo";
                 producto.imageP = productos.imageP;
-                producto.menu_Fk = productos.menu_Fk;
+                producto.menu_Fk = 1 /*productos.menu_Fk;*/;
 
                 iproducto.Insert(producto);
             }
@@ -58,7 +58,7 @@ namespace RestaurantOnline.Controllers
             }
 
      
-                return Redirect("/AgregarP/AgregarProductos");
+                return Redirect("/AdministrarP/AgregarProductos");
            
             
 
@@ -76,6 +76,17 @@ namespace RestaurantOnline.Controllers
 
 
             return View("DatosProductos");
+        }
+
+        public IActionResult DeleteProduts(tbl_Producto producto)
+        {
+            int codId = producto.producto_id;
+            tbl_Producto deleteL = db.tbl_Producto.Where(x => x.producto_id == codId).FirstOrDefault();
+            deleteL.estadoProducto = "inactivo";
+
+            iproducto.Update(deleteL);
+
+            return Redirect("/AdministrarP/AgregarProductos");
         }
     }
 }
