@@ -13,7 +13,6 @@ namespace RestaurantOnline.Entidades
         public tbl_Producto()
         {
             this.TblCarritoes = new List<tbl_Carrito>();
-            this.TblDetalleComboes = new List<tbl_DetalleCombo>();
             this.TblDetalleOrdens = new List<tbl_DetalleOrden>();
         }
 
@@ -35,7 +34,6 @@ namespace RestaurantOnline.Entidades
         [ForeignKey("menu_Fk")]
         public tbl_Menu TblMenu { get; set; }
         public List<tbl_Carrito> TblCarritoes { get; set; }
-        public List<tbl_DetalleCombo> TblDetalleComboes { get; set; }
         public List<tbl_DetalleOrden> TblDetalleOrdens { get; set; }
     }
 }

@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace RestaurantOnline.Controllers
 {
-    public class AgregarPController : Controller
+    public class AdministrarPController : Controller
     {
 
         private ApplicationDbContext db;
         private IProducto iproducto;
 
-        public AgregarPController(ApplicationDbContext db, IProducto iproducto)
+        public AdministrarPController(ApplicationDbContext db, IProducto iproducto)
         {
             this.db = db;
             this.iproducto = iproducto;

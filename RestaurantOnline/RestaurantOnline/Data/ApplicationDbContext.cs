@@ -29,10 +29,6 @@ namespace RestaurantOnline.Data
 
         public DbSet<tbl_Producto> tbl_Producto { get; set; }
 
-        public DbSet<tbl_Combo> tbl_Combo { get; set; }
-
-        public DbSet<tbl_DetalleCombo> tbl_DetalleCombo { get; set; }
-
         public DbSet<tbl_Carrito> tbl_Carrito { get; set; }
 
         public DbSet<tbl_Orden> tbl_Orden { get; set; }

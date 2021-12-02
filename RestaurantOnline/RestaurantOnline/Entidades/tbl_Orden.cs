@@ -35,6 +35,7 @@ namespace RestaurantOnline.Entidades
 
         [ForeignKey("documento_Fk")]
         public tbl_Documento TblDocumento { get; set; }
+
         public List<tbl_DetalleOrden> TblDetalleOrdens { get; set; }
     }
 }

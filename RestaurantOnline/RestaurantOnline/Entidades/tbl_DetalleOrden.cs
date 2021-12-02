@@ -16,14 +16,10 @@ namespace RestaurantOnline.Entidades
         public int? cantidad { get; set; }
         public decimal? totalFinal { get; set; }
         public int orden_FK { get; set; }
-        public int combo_FK { get; set; }
         public int producto_Fk { get; set; }
 
         [ForeignKey("orden_FK")]
         public tbl_Orden TblOrden { get; set; }
-
-        [ForeignKey("combo_FK")]
-        public tbl_Combo TblCombo { get; set; }
 
         [ForeignKey("producto_Fk")]
         public tbl_Producto TblProducto { get; set; }

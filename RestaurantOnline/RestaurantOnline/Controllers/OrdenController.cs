@@ -2,6 +2,7 @@
 using RestaurantOnline.Data;
 using RestaurantOnline.Entidades;
 using RestaurantOnline.Helper;
+using RestaurantOnline.Models.ViewModels;
 using RestaurantOnline.Service;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace RestaurantOnline.Controllers
             return View();
         }
 
-        public IActionResult Venta(tbl_Orden datosOrden, tbl_DetalleOrden datosDetalle)
+        public IActionResult Venta(VentaViewModel datosOrden, tbl_DetalleOrden datosDetalle)
         {
             var Order = new tbl_Orden();
             var Detalle = new tbl_DetalleOrden();
@@ -60,23 +61,23 @@ namespace RestaurantOnline.Controllers
                     LoginHelper.GetNameIdentifier(User);
 
                     Order.fechaOrden = DateTime.Now;
-                    Order.estadoOrden = "Procesando";
+                    Order.estadoOrden = datosOrden.estadoOrden;
                     Order.user_FK = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
                     Order.metodoPago_FK = 1;
-                    Order.documento_Fk = 1;
+                    Order.documento_Fk = 2;
 
                     iorden.Insert(Order);
 
                 }       
 
-                Detalle.cantidad = datosDetalle.cantidad;
-                Detalle.totalFinal = datosDetalle.totalFinal;
-                Detalle.orden_FK = LastID;
-                Detalle.producto_Fk = datosDetalle.producto_Fk;
+                //Detalle.cantidad = datosDetalle.cantidad;
+                //Detalle.totalFinal = datosDetalle.totalFinal;
+                //Detalle.orden_FK = LastID;
+                //Detalle.producto_Fk = datosDetalle.producto_Fk;
                 
 
 
-                idetalleOrden.Insert(Detalle);
+                //idetalleOrden.Insert(Detalle);
 
             //}
             //catch
