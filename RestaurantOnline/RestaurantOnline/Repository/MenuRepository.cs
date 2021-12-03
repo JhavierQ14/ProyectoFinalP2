@@ -28,7 +28,7 @@ namespace RestaurantOnline.Repository
             app.SaveChanges();
         }
 
-        public ICollection<tbl_Menu> Menu()
+        public List<tbl_Menu> ListMenu()
         {
             return app.tbl_Menu.ToList();
         }

@@ -12,6 +12,6 @@ namespace RestaurantOnline.Service
         void Delete(tbl_Menu menu);
         void Update(tbl_Menu menu);
 
-        ICollection<tbl_Menu> Menu();
+        List<tbl_Menu> ListMenu();
     }
 }

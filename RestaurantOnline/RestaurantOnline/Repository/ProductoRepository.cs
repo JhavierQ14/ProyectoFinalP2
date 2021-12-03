@@ -1,4 +1,5 @@
-﻿using RestaurantOnline.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantOnline.Data;
 using RestaurantOnline.Entidades;
 using RestaurantOnline.Service;
 using System;
@@ -30,7 +31,8 @@ namespace RestaurantOnline.Repository
 
         public List<tbl_Producto> ListofP()
         {
-            return app.tbl_Producto.ToList();
+            var union = app.tbl_Producto.Include(x => x.TblMenu).ToList();
+            return union;
         }
 
         public List<tbl_Producto> ListVista()

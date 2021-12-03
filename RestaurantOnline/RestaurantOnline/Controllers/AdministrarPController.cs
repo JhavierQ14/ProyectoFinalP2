@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RestaurantOnline.Data;
 using RestaurantOnline.Entidades;
 using RestaurantOnline.Service;
@@ -14,11 +15,14 @@ namespace RestaurantOnline.Controllers
 
         private ApplicationDbContext db;
         private IProducto iproducto;
+        private IMenu imenu;
 
-        public AdministrarPController(ApplicationDbContext db, IProducto iproducto)
+        public AdministrarPController(ApplicationDbContext db, IProducto iproducto, IMenu imenu)
         {
             this.db = db;
             this.iproducto = iproducto;
+            this.imenu = imenu;
+
         }
 
         public IActionResult AgregarProductos()
@@ -88,5 +92,45 @@ namespace RestaurantOnline.Controllers
 
             return Redirect("/AdministrarP/AgregarProductos");
         }
+
+        public IActionResult ComboProducts(tbl_Producto producto)
+        {
+            return View("DatosProductos");
+        }
+
+        public IActionResult DateProducts()
+        {
+            var cbxEstado = iproducto.ListofP();
+            var cbxMenu = imenu.ListMenu();
+
+            List<SelectListItem> listEstado = new List<SelectListItem>();
+            List<SelectListItem> listMenu = new List<SelectListItem>();
+
+            //foreach (var item in cbxEstado)
+            //{
+            //    listEstado.Add(
+            //        new SelectListItem
+            //        {
+            //            Text = item.estadoProducto,
+            //            //Value = Convert.ToString(item.producto_id)
+            //        });
+
+            //    ViewBag.EList = listEstado;
+            //}
+            foreach (var item in cbxMenu)
+            {
+                listMenu.Add(
+                    new SelectListItem
+                    {
+                        Text = item.nombreMenu,
+                        Value = Convert.ToString(item.menu_id)
+                    });
+
+                ViewBag.MList = listMenu;
+            }
+
+            return View();
+        }
+
     }
 }
