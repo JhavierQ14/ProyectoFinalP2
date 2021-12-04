@@ -12,6 +12,6 @@ namespace RestaurantOnline.Service
         void Delete(tbl_Domicilio domicilio);
         void Update(tbl_Domicilio domicilio);
 
-        ICollection<tbl_Domicilio> Domicilios();
+        List<tbl_Domicilio> Domicilios();
     }
 }

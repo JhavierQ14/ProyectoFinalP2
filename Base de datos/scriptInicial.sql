@@ -102,8 +102,23 @@ create table tbl_Carrito(
  );
 
 
+ --create table tbl_UserRol(
+ --id_Usuario int,
+ --id_Rol int,
+ --Primary key(id_Usuario,id_Rol),
+ --Foreign key (id_Usuario) references tbl_User(usuario_id) on delete cascade,
+ --Foreign key (id_Rol) references tbl_RolUsuario(rolUser_id) on delete cascade
+ --);
+
+
+/***************************************************************************************************/
  select * from tbl_User
  select * from tbl_Carrito
+ select * from tbl_Orden
+
+ ALTER TABLE tbl_User ADD rolUser_Fk int references tbl_RolUsuario(rolUser_id)
+
+
 
 use sistema_ventas;
 alter table tb_detalleventa alter column precio decimal(18,5)
@@ -114,3 +129,7 @@ alter table tb_venta alter column totalventa decimal(18,5)
 SELECT tbl_User.nombreU,tbl_User.apellidoU, tbl_RolUsuario.nombreRol
 FROM tbl_User
 INNER JOIN tbl_RolUsuario ON tbl_User.rolUser_Fk = tbl_RolUsuario.rolUser_id;
+
+
+INSERT INTO tbl_Orden(estadoOrden, user_FK, metodoPago_FK,documento_Fk)
+VALUES ('Procesando', 1, 1, 1);

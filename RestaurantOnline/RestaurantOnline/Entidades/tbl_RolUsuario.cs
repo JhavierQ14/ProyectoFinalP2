@@ -21,6 +21,7 @@ namespace RestaurantOnline.Entidades
         [MaxLength]
         public string nombreRol { get; set; }
 
+
         public List<tbl_User> TblUsers { get; set; }
     }
 

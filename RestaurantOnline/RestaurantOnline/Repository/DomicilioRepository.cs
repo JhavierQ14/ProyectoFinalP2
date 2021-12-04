@@ -22,7 +22,7 @@ namespace RestaurantOnline.Repository
             app.tbl_Domicilio.Remove(domicilio);
         }
 
-        public ICollection<tbl_Domicilio> Domicilios()
+        public List<tbl_Domicilio> Domicilios()
         {
             return app.tbl_Domicilio.ToList();
         }

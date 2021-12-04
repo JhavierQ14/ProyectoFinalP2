@@ -38,10 +38,8 @@ namespace RestaurantOnline.Controllers
 
                 return View(carritolist);
             }
-            else
-            {
+
                 return View();
-            }
         }
 
         public IActionResult Guardar(tbl_Carrito car)
@@ -55,7 +53,6 @@ namespace RestaurantOnline.Controllers
                 carrito.cantidadP = 1;
                 carrito.totalP = car.totalP;
                 carrito.usuario_Fk = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
-                //carrito.combo_FK = 0;
                 carrito.producto_Fk = car.producto_Fk;
 
                 icarrito.Insert(carrito);

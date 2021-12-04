@@ -31,7 +31,7 @@ namespace RestaurantOnline.Controllers
 
         public async Task<IActionResult> Log(tbl_User users)
         {
-            var log = await db.tbl_User.Where(a => a.correoU.Equals(users.correoU)).FirstOrDefaultAsync();
+            var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.correoU)).FirstOrDefaultAsync();
 
             if (log != null)
             {
@@ -42,15 +42,27 @@ namespace RestaurantOnline.Controllers
                     identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, log.usuario_id.ToString()));
                     identity.AddClaim(new Claim(ClaimTypes.Name, nameUser));
                     identity.AddClaim(new Claim(ClaimTypes.Email, log.correoU));
+                    identity.AddClaim(new Claim(ClaimTypes.Role, log.TblRolUsuario.nombreRol));
                     identity.AddClaim(new Claim("Dato", "Valor"));
+
                     var principal = new ClaimsPrincipal(identity);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, 
                         new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(1), IsPersistent = true });
 
-                    return /*Ok(log);*/  Redirect("/Home/Index");
+                    var typeUser = log.TblRolUsuario.nombreRol;
+
+                    if (typeUser == "Administrador")
+                    {
+                        return Redirect("/Administracion/Index");
+                    }
+                    else
+                    {
+                        return Redirect("/Home/Index");
+                    }                
                 }
                 else
                 {
+                    ViewBag.MLog = "Usuario o password incorrectas";
 
                     return View("LogIn");
                 }
@@ -70,9 +82,6 @@ namespace RestaurantOnline.Controllers
             return Redirect("/Authentication/LogIn");
         }
 
-
-        //[BindProperty]
-        //public tbl_User user { get; set; }
         [HttpPost]
         public async Task<IActionResult> Succes(tbl_User user)
         {
@@ -92,7 +101,7 @@ namespace RestaurantOnline.Controllers
                     var hash = HashHelper.Hash(user.contraU);
                     user.contraU = hash.Password;
                     user.encryptionU = hash.Salt;
-                    user.rolUser_Fk = 1;
+                    //user.rolUser_Fk = 1;
                     db.tbl_User.Add(user);
                     await db.SaveChangesAsync();
                     //user.Clave = "";

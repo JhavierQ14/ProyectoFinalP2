@@ -14,6 +14,8 @@ namespace RestaurantOnline.Repository
     {
         private ApplicationDbContext app;
 
+        public int usuarioI;
+
         public CarritoRepository(ApplicationDbContext app)
         {
             this.app = app;

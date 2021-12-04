@@ -9,5 +9,14 @@ namespace RestaurantOnline.Models.ViewModels
     {
         public string estadoOrden { get; set; }
 
+        public int metodoPago_FK { get; set; }
+        public int documento_Fk { get; set; }
+
+        public List<DetalleViewModel> Detalle { get; set; }
+    }
+
+    public class DetalleViewModel
+    {
+
     }
 }
