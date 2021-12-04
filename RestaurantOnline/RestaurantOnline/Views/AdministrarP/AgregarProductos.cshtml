@@ -12,61 +12,68 @@
 
     <h1 class="text-center"> Ingresar Productos </h1>
     <br />
-    <div class="text-center">
-        <table class="table table-hover">
-            <thead>
-            <th typeof="hidden">
-                Id
-            </th>
-            <th>
-                Nombre del producto
-            </th>
-            <th>
-                Precio
-            </th>
-            <th>
-                Fecha
-            </th>
-            <th>
-                Estado Producto
-            </th>
-            <th>
-                Imagen del producto
-            </th>
-            <th>
-                Menú
-            </th>
-            <th>
-                @Html.ActionLink("Agregar Productos", "DatosProductos", new { producto_id = 0 }, new { @class = "btn btn-success" })
-            </th>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="container text-center" >
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table">
+                    <table class="table table-hover">
+                        <thead>
+                        <th typeof="hidden">
+                            Id
+                        </th>
+                        <th>
+                            Nombre del producto
+                        </th>
+                        <th>
+                            Precio
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Estado Producto
+                        </th>
+                        <th>
+                            Imagen del producto
+                        </th>
+                        <th>
+                            Menú
+                        </th>
+                        <th>
+                            @Html.ActionLink("Agregar Productos", "DatosProductos", new { producto_id = 0 }, new { @class = "btn btn-success" })
+                        </th>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
 
-                    <tr>
-                        <td>@item.producto_id</td>
-                        <td>@item.nombreProducto</td>
-                        <td>@item.precioP</td>
-                        <td>@item.fechaCreacionP</td>
-                        <td>@item.estadoProducto</td>
-                        <td>@item.imageP</td>
-                        <td>@item.menu_Fk</td>
+                                <tr>
+                                    <td>@item.producto_id</td>
+                                    <td>@item.nombreProducto</td>
+                                    <td>@item.precioP</td>
+                                    <td>@item.fechaCreacionP</td>
+                                    <td>@item.estadoProducto</td>
+                                    <td>@item.imageP</td>
+                                    <td>@item.menu_Fk</td>
 
 
 
 
 
-                        <td>
+                                    <td>
+                                        <div class="container m-3">
+                                            @Html.ActionLink("Actualizar", "DatosProductos", new { producto_id = item.producto_id, estadoProducto = item.estadoProducto, nombreProducto = item.nombreProducto, preciop = item.precioP, imageP = item.imageP, menuFK = item.menu_Fk }, new { @class = "btn btn-primary" })
+                                            @Html.ActionLink("Borrar", "DeleteProduts", new { producto_id = item.producto_id }, new { @class = "btn btn-danger" })
+                                        </div>
 
-                                @Html.ActionLink("Actualizar", "DatosProductos", new { producto_id = item.producto_id, estadoProducto = item.estadoProducto, nombreProducto = item.nombreProducto, preciop = item.precioP, imageP = item.imageP, menuFK = item.menu_Fk}, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Borrar", "DeleteProduts", new { producto_id = item.producto_id }, new { @class = "btn btn-danger" })
-
-                            </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
