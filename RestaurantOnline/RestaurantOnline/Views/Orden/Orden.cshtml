@@ -80,60 +80,60 @@
                 </div>
             }
 
-        <table class="table table-striped table-hover">
-            <thead>
+        <div id="detalle">
 
-            <th>Codigo Producto</th>
-            <th>Nombre Producto</th>
-            <th>Cantidad Producto</th>
-            <th>Precio Unitario</th>
+            <div class="form-group">
+                
+            </div>
 
-            </thead>
+            <table class="table table-striped table-hover">
+                <thead>
 
-            <tbody>
+                <th>Codigo Producto</th>
+                <th>Nombre Producto</th>
+                <th>Cantidad Producto</th>
+                <th>Precio Unitario</th>
 
-                @foreach (var iteracion in Model)
-                {
+                </thead>
+
+                <tbody>
+
+                    @foreach (var iteracion in Model)
+                    {
+                        <tr>
+                            <td>@iteracion.TblProducto.codProducto</td>
+                            <td>@iteracion.TblProducto.nombreProducto</td>
+                            <td>@iteracion.cantidadP</td>
+                            <td>@iteracion.TblProducto.precioP</td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
                     <tr>
-                        <td>@iteracion.TblProducto.codProducto</td>
-                        <td>@iteracion.TblProducto.nombreProducto</td>
-                        <td>@iteracion.cantidadP</td>
-                        <td>@iteracion.TblProducto.precioP</td>
+                        <th colspan="3" style="background-color: rgb(174, 214, 241);"><b>Total Final</b></th>
+                        <th style="background-color: rgb(174, 214, 241);"><b>$@ViewBag.Total</b></th>
                     </tr>
-                }
+                </tfoot>
+            </table>
 
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="3" style="background-color: rgb(174, 214, 241);"><b>Total Final</b></th>
-                    <th style="background-color: rgb(174, 214, 241);"><b>$@ViewBag.Total</b></th>
-                </tr>
-            </tfoot>
-        </table>
+            <input type="hidden" name="Detalle.Index" id="Detalle.Index" value="0" />
+            <input type="hidden" name="Detalle[0].cantidad" id="Detalle[0].cantidad" value="2" />
+            <input type="hidden" name="Detalle[0].totalFinal" id="Detalle[0].totalFinal" value="7" />
+            <input type="hidden" name="Detalle[0].producto_Fk" id="Detalle[0].producto_Fk" value="3" />
 
+            <input type="hidden" name="Detalle.Index" id="Detalle.Index" value="1" />
+            <input type="hidden" name="Detalle[1].cantidad" id="Detalle[1].cantidad" value="1" />
+            <input type="hidden" name="Detalle[1].totalFinal" id="Detalle[1].totalFinal" value="4.50" />
+            <input type="hidden" name="Detalle[1].producto_Fk" id="Detalle[1].producto_Fk" value="2" />
+
+
+        </div>
             <input type="submit" value="Pagar" class="btnss">
 
         </form>
 
     </section>
 
-    <script>
-        $(document).ready(function () {
-            $("input[type=radio]").click(function (event) {
-                var valor = $(event.target).val();
-                if (valor == "Deposito") {
-                    $("#div1").show();
-                    $("#div2").hide();
-                } else if (valor == "Ventanilla") {
-                    $("#div1").hide();
-                    $("#div2").show();
-                }
-            });
-        });
-
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="~/js/OrdenScrip.js"></script>
 </body>
 </html>

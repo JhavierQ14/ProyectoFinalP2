@@ -7,7 +7,6 @@ namespace RestaurantOnline.Models.ViewModels
 {
     public class VentaViewModel
     {
-        public string estadoOrden { get; set; }
 
         public int metodoPago_FK { get; set; }
         public int documento_Fk { get; set; }
@@ -17,6 +16,9 @@ namespace RestaurantOnline.Models.ViewModels
 
     public class DetalleViewModel
     {
-
+        public int? cantidad { get; set; }
+        public decimal? totalFinal { get; set; }
+        public int orden_FK { get; set; }
+        public int producto_Fk { get; set; }
     }
 }

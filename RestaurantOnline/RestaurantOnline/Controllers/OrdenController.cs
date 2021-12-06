@@ -24,7 +24,7 @@ namespace RestaurantOnline.Controllers
         private ICarrito icarrito;
         private IMetodoPago impago;
         private IDocumento idocumento;
-        
+
 
         public int LastID;
 
@@ -39,7 +39,7 @@ namespace RestaurantOnline.Controllers
             this.idocumento = idocumento;
         }
 
-        /***************************************************************************************************************************/
+/***************************************************************************************************************************/
         //void LastOrder()
         //{
 
@@ -56,7 +56,7 @@ namespace RestaurantOnline.Controllers
 
         //}
 
-        /***********************************************************************************************************************/
+/***********************************************************************************************************************/
 
 
         public IActionResult DetalleVenta()
@@ -64,12 +64,12 @@ namespace RestaurantOnline.Controllers
             return View();
         }
 
-        /***********************************************************************************************************************/
+/***********************************************************************************************************************/
         public IActionResult Orden()
         {
             var lstPago = impago.metodoPago();
-            List<MPagoViewModel> lstMPago = (from p in lstPago 
-                                             select new MPagoViewModel{metodoPago_id = p.metodoPago_id, nombreMetodo = p.nombreMetodo }).ToList();
+            List<MPagoViewModel> lstMPago = (from p in lstPago
+                                             select new MPagoViewModel { metodoPago_id = p.metodoPago_id, nombreMetodo = p.nombreMetodo }).ToList();
 
             List<SelectListItem> items = lstMPago.ConvertAll(x =>
             {
@@ -84,7 +84,7 @@ namespace RestaurantOnline.Controllers
 
             var lstDocumento = idocumento.documento();
             List<DocumentoViewModel> lstDoc = (from d in lstDocumento
-                                               select new DocumentoViewModel { documento_id = d.documento_id, nombreDocumento = d.nombreDocumento}).ToList();
+                                               select new DocumentoViewModel { documento_id = d.documento_id, nombreDocumento = d.nombreDocumento }).ToList();
 
             List<SelectListItem> items2 = lstDoc.ConvertAll(x =>
             {
@@ -124,7 +124,7 @@ namespace RestaurantOnline.Controllers
             }
         }
 
-        public IActionResult Venta(VentaViewModel datosOrden, tbl_DetalleOrden datosDetalle, tbl_Domicilio datosDomicilio)
+        public IActionResult Venta(VentaViewModel datosOrden, tbl_Domicilio datosDomicilio)
         {
             var Order = new tbl_Orden();
             var Detalle = new tbl_DetalleOrden();
@@ -132,40 +132,42 @@ namespace RestaurantOnline.Controllers
 
             //try
             //{
-                if (User.Identity.IsAuthenticated)
-                {
-                    LoginHelper.GetNameIdentifier(User);
-                    int usuario = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+            if (User.Identity.IsAuthenticated)
+            {
+                LoginHelper.GetNameIdentifier(User);
+                int usuario = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
 
-                    idD = datosDomicilio.domicilio_id;
-                    tbl_Domicilio domicilio = db.tbl_Domicilio.Where(x => x.domicilio_id == idD && x.usuario_Fk == usuario).FirstOrDefault();
-                    domicilio.ubicacion = datosDomicilio.ubicacion;
-                    domicilio.referencia = datosDomicilio.referencia;
-                    idomicilio.Update(domicilio);
-
-
-                    Order.fechaOrden = DateTime.Now;
-                    Order.estadoOrden = "Procesando";
-                    Order.user_FK = usuario;
-                    Order.metodoPago_FK = /*datosOrden.metodoPago_FK*/1;
-                    Order.documento_Fk = /*datosOrden.documento_Fk*/1;
-                    iorden.Insert(Order);
-
-                }
-
-                //Detalle.cantidad = datosDetalle.cantidad;
-                //Detalle.totalFinal = datosDetalle.totalFinal;
-                //Detalle.orden_FK = LastID;
-                //Detalle.producto_Fk = datosDetalle.producto_Fk;
+                idD = datosDomicilio.domicilio_id;
+                tbl_Domicilio domicilio = db.tbl_Domicilio.Where(x => x.domicilio_id == idD && x.usuario_Fk == usuario).FirstOrDefault();
+                domicilio.ubicacion = datosDomicilio.ubicacion;
+                domicilio.referencia = datosDomicilio.referencia;
+                idomicilio.Update(domicilio);
 
 
+                Order.fechaOrden = DateTime.Now;
+                Order.estadoOrden = "Procesando";
+                Order.user_FK = usuario;
+                Order.metodoPago_FK = 1;
+                Order.documento_Fk = 1;
+                iorden.Insert(Order);
 
-                //idetalleOrden.Insert(Detalle);
+            }
 
+            foreach (var item in datosOrden.Detalle)
+            {
+                Detalle.cantidad = item.cantidad;
+                Detalle.totalFinal = item.totalFinal;
+                Detalle.orden_FK = Order.orden_id;
+                Detalle.producto_Fk = item.producto_Fk;
+                //db.tbl_DetalleOrden.Add(Detalle);
+                idetalleOrden.Insert(Detalle);
+            }
+            //db.SaveChanges();
+            
             //}
             //catch(Exception ex)
             //{
-                
+
             //}
 
             return Redirect("/Home/Index");
