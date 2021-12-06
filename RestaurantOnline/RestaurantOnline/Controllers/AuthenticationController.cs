@@ -7,21 +7,25 @@ using Newtonsoft.Json.Linq;
 using RestaurantOnline.Data;
 using RestaurantOnline.Entidades;
 using RestaurantOnline.Helper;
+using RestaurantOnline.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using RestaurantOnline.Service;
 
 namespace RestaurantOnline.Controllers
 {
     public class AuthenticationController : Controller
     {
         private ApplicationDbContext db;
+        private IUsuario iuser;
 
-        public AuthenticationController(ApplicationDbContext db)
+        public AuthenticationController(ApplicationDbContext db, IUsuario iuser)
         {
             this.db = db;
+            this.iuser = iuser;
         }
 
         public IActionResult LogIn()
@@ -29,13 +33,13 @@ namespace RestaurantOnline.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Log(tbl_User users)
+        public async Task<IActionResult> Log(LogInViewModels users)
         {
-            var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.correoU)).FirstOrDefaultAsync();
+            var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.correoUser)).FirstOrDefaultAsync();
 
             if (log != null)
             {
-                if (HashHelper.CheckHash(users.contraU, log.contraU, log.encryptionU))
+                if (HashHelper.CheckHash(users.contraUser, log.contraU, log.encryptionU))
                 {
                     var nameUser = log.nombreU +" "+ log.apellidoU;
                     var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
@@ -83,7 +87,7 @@ namespace RestaurantOnline.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Succes(tbl_User user)
+        public async Task<IActionResult> Succes(LogInViewModels user)
         {
             var result = await db.tbl_User.Where(x => x.correoU == user.correoU).SingleOrDefaultAsync();
             if (result != null)
@@ -98,15 +102,22 @@ namespace RestaurantOnline.Controllers
                 }
                 else
                 {
+                    var tblUser = new tbl_User();
+
+                    tblUser.nombreU = user.nombreU;
+                    tblUser.apellidoU = user.apellidoU;
+                    tblUser.telefonoU = user.telefonoU;
+                    tblUser.correoU = user.correoU;
                     var hash = HashHelper.Hash(user.contraU);
-                    user.contraU = hash.Password;
-                    user.encryptionU = hash.Salt;
-                    //user.rolUser_Fk = 1;
-                    db.tbl_User.Add(user);
-                    await db.SaveChangesAsync();
+                    tblUser.contraU = hash.Password;
+                    tblUser.encryptionU = hash.Salt;
+                    tblUser.rolUser_Fk = 1;
+                    iuser.Insert(tblUser);
+                    //db.tbl_User.Add(tblUser);
+                    //await db.SaveChangesAsync();
                     //user.Clave = "";
                     //user.Sal = "";
-                    return Created($"/Usuarios/{user.usuario_id}", user) /*Redirect("/Authentication/LogIn")*/;
+                    return Created($"/Usuarios/{tblUser.usuario_id}", tblUser);
                 }
             }
         }

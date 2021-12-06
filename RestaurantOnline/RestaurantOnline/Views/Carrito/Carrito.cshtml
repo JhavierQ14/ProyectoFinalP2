@@ -20,6 +20,7 @@
 <body>
 
     <div id="boton">
+        <a class="btn btn-success" asp-action="Index" asp-controller="Home">Regresar al Inicio</a>
         <a class="btn btn-success" asp-action="Regresar" asp-controller="Carrito">Seguir Comprando</a>
     </div>
 
@@ -38,21 +39,25 @@
                 @foreach (var item in Model)
                 {
 
-                    <div class="box">
-                        <a asp-controller="Carrito" asp-action="Eliminar" asp-route-id="@item.carrito_id"><i class="fas fa-times"></i></a>
-                        @Html.ActionLink("Actualizar", "Eliminar", "Carrito", new { carrito_id = item.carrito_id }, new { @class = "btn btn-danger" })
-                        <img src="@item.TblProducto.imageP" alt="">
-                        <div class="content">
-                            <h3>@item.TblProducto.nombreProducto</h3>
-                            <span> Cantidad : </span>
-                            <input type="number" name="" value="@item.cantidadP" id="">
-                            <br>
-                            <span> price : </span>
-                            <span class="pr"> @item.totalP</span>
-                        </div>
-                    </div>
-                }
+                    @using (Html.BeginForm("Actualizar", "Carrito", FormMethod.Post))
+                    {
+                        <div class="box">
+                            <a asp-controller="Carrito" asp-action="Eliminar" asp-route-id="@item.carrito_id"><i class="fas fa-times"></i></a>
 
+                            <button type="submit" class="btn btn-success"> Actualizar</button>
+                            <img src="@item.TblProducto.imageP" alt="">
+                            <div class="content">
+                                <h3>@item.TblProducto.nombreProducto</h3>
+                                <span> Cantidad : </span>
+                                <input type="number" name="cantidadP" value="@item.cantidadP" id="">
+                                <input type="hidden" name="carrito_id" value="@item.carrito_id"/>
+                                <br>
+                                <span> price : </span>
+                                <span class="pr"> @item.totalP</span>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
 
 
@@ -65,7 +70,7 @@
             <div class="box">
 
                 <h3 class="total"> total : <span>$@ViewBag.Total</span> </h3>
-                <a class="btn" @*asp-controller="Orden" asp-action="Venta" asp-route-cantidad="@item.cantidadP" asp-route-totalFinal="@ViewBag.Total" asp-route-producto_Fk="@item.producto_Fk"*@>
+                <a class="btn" asp-controller="Orden" asp-action="Orden">
                     Realizar Compra
                 </a>
 

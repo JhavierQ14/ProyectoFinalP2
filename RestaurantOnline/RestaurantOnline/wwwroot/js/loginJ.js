@@ -10,27 +10,27 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
-$(document).ready(function () {
-    $("#Log").validate({
-        rules: {
-            correoU: {
-                required: true,
-                email: true
-            },
-            contraU: {
-                required: true,               
-            },
+//$(document).ready(function () {
+//    $("#Log").validate({
+//        rules: {
+//            correoU: {
+//                required: true,
+//                email: true
+//            },
+//            contraU: {
+//                required: true,               
+//            },
             
-        },
-        messages: {
-            correoU: {
-                required: "Ingrese su correo",
-                email: "Debe ingresar un correo"
-            },
-            contraU: {
-                required: "Ingrese su password",
-            }
-        }
-    });
-});
+//        },
+//        messages: {
+//            correoU: {
+//                required: "Ingrese su correo",
+//                email: "Debe ingresar un correo"
+//            },
+//            contraU: {
+//                required: "Ingrese su password",
+//            }
+//        }
+//    });
+//});
 

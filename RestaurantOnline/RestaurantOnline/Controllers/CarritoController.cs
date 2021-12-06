@@ -28,9 +28,6 @@ namespace RestaurantOnline.Controllers
             {
                 LoginHelper.GetNameIdentifier(User);
                 var userId = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
-                //var carritolist = icarrito.listCarrito();
-                //var sumaTotales = carritolist.Sum(x => x.totalP * x.cantidadP);
-                //ViewBag.Total = sumaTotales;
 
                 var carritolist = db.tbl_Carrito.Include(x => x.TblProducto).Where(x => x.usuario_Fk == userId).ToList();
                 var sumaTotales = carritolist.Sum(x => x.totalP * x.cantidadP);
@@ -39,7 +36,7 @@ namespace RestaurantOnline.Controllers
                 return View(carritolist);
             }
 
-                return View();
+            return View();
         }
 
         public IActionResult Guardar(tbl_Carrito car)
@@ -72,10 +69,26 @@ namespace RestaurantOnline.Controllers
 
             return Redirect("/Carrito/Carrito");
         }
+
+        [HttpPost]
+        public IActionResult Actualizar(int carrito_id, int cantidadP)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                int usuario = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+                int idD = carrito_id;
+
+                tbl_Carrito carrito = db.tbl_Carrito.Where(x => x.carrito_id == idD && x.usuario_Fk == usuario).FirstOrDefault();
+                carrito.cantidadP = cantidadP;
+                icarrito.Update(carrito);
+            }
+
+            return Redirect("/Carrito/Carrito");
+        }
         public IActionResult Regresar()
         {
             return Redirect("/Products/Menu");
-        }   
-        
+        }
+
     }
 }

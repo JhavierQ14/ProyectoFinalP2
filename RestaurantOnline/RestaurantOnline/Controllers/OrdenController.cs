@@ -57,14 +57,6 @@ namespace RestaurantOnline.Controllers
         //}
 
 /***********************************************************************************************************************/
-
-
-        public IActionResult DetalleVenta()
-        {
-            return View();
-        }
-
-/***********************************************************************************************************************/
         public IActionResult Orden()
         {
             var lstPago = impago.metodoPago();
@@ -160,10 +152,10 @@ namespace RestaurantOnline.Controllers
                 Detalle.orden_FK = Order.orden_id;
                 Detalle.producto_Fk = item.producto_Fk;
                 //db.tbl_DetalleOrden.Add(Detalle);
-                idetalleOrden.Insert(Detalle);
+                
             }
             //db.SaveChanges();
-            
+            idetalleOrden.Insert(Detalle);
             //}
             //catch(Exception ex)
             //{

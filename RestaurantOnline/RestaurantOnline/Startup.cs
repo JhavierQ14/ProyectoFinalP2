@@ -87,7 +87,7 @@ namespace RestaurantOnline
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Orden}/{action=Orden}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

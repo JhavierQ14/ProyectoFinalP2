@@ -8,25 +8,36 @@ namespace RestaurantOnline.Models.ViewModels
 {
     public class LogInViewModels
     {
-        
-        public int usuario_id { get; set; }
 
+
+        [Display(Name = "correoU")]
+        [Required(ErrorMessage = "Campo requerido")]
+        [EmailAddress(ErrorMessage = "Debe ingresar un correo")]
+        public string correoUser { get; set; }
+
+
+        [Display(Name = "contraU")]
+        [Required(ErrorMessage = "Campo requerido")]
+        public string contraUser { get; set; }
+
+        /***************************************************************************************************************************************/
         [Display(Name = "nombreU")]
-        [Required(ErrorMessage = "Escriba su nombre.")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string nombreU { get; set; }
 
         [Display(Name = "apellidoU")]
-        [Required(ErrorMessage = "Escriba su apellido.")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string apellidoU { get; set; }
 
         public int? telefonoU { get; set; }
 
         [Display(Name = "correoU")]
-        [Required(ErrorMessage = "Escriba el nombre de usuario.")]
+        [Required(ErrorMessage = "Campo requerido")]
+        [EmailAddress(ErrorMessage = "Debe ingresar un correo")]
         public string correoU { get; set; }
 
         [Display(Name = "contraU")]
-        [Required(ErrorMessage = "Escriba su clave")]
+        [Required(ErrorMessage = "Campo requerido")]
         [MinLength(8, ErrorMessage = "Escriba al menos 8 caracteres.")]
         [MaxLength(50, ErrorMessage = "Escriba un máximo de 50 caracteres.")]
         public string contraU { get; set; }
