@@ -33,15 +33,15 @@ namespace RestaurantOnline.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Log(LogInViewModels users)
+        public async Task<IActionResult> Log(tbl_User users)
         {
             if (ModelState.IsValid)
             {
-                var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.correoUser)).FirstOrDefaultAsync();
+                var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.contraU)).FirstOrDefaultAsync();
 
                 if (log != null)
                 {
-                    if (HashHelper.CheckHash(users.contraUser, log.contraU, log.encryptionU))
+                    if (HashHelper.CheckHash(users.contraU, log.contraU, log.encryptionU))
                     {
                         var nameUser = log.nombreU + " " + log.apellidoU;
                         var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);

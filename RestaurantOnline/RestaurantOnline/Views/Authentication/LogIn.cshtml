@@ -25,13 +25,13 @@
                     <h2 class="title animate__animated animate__fadeInDown">Acceder</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="correoU" type="text" placeholder="Correo" asp-for="correoUser" />
-                        <span asp-validation-for="correoUser"></span>
+                        <input name="correoU" type="text" placeholder="Correo" @*asp-for="correoUser"*@ required/>
+                        @*<span asp-validation-for="correoUser"></span>*@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="contraU" type="password" placeholder="Contraseña" asp-for="contraUser" />
-                        <span asp-validation-for="contraUser"></span>
+                        <input name="contraU" type="password" placeholder="Contraseña" @*asp-for="contraUser"*@ required/>
+                        @*<span asp-validation-for="contraUser"></span>*@
                     </div>
                     <input type="submit" value="Acceder" class="btn solid" />
 

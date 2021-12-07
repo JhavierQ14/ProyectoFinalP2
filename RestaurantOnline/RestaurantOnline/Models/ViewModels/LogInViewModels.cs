@@ -10,15 +10,15 @@ namespace RestaurantOnline.Models.ViewModels
     {
 
 
-        [Display(Name = "correoU")]
-        [Required(ErrorMessage = "Campo requerido")]
-        [EmailAddress(ErrorMessage = "Debe ingresar un correo")]
-        public string correoUser { get; set; }
+        //[Display(Name = "correoU")]
+        //[Required(ErrorMessage = "Campo requerido")]
+        //[EmailAddress(ErrorMessage = "Debe ingresar un correo")]
+        //public string correoUser { get; set; }
 
 
-        [Display(Name = "contraU")]
-        [Required(ErrorMessage = "Campo requerido")]
-        public string contraUser { get; set; }
+        //[Display(Name = "contraU")]
+        //[Required(ErrorMessage = "Campo requerido")]
+        //public string contraUser { get; set; }
 
         /***************************************************************************************************************************************/
         [Display(Name = "nombreU")]
