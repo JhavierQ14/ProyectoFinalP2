@@ -120,7 +120,7 @@ namespace RestaurantOnline.Controllers
         {
             var Order = new tbl_Orden();
             var Detalle = new tbl_DetalleOrden();
-            int idD;
+            int idD = datosDomicilio.domicilio_id;
 
             try
             {
@@ -129,12 +129,21 @@ namespace RestaurantOnline.Controllers
                     LoginHelper.GetNameIdentifier(User);
                     int usuario = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
 
-                    idD = datosDomicilio.domicilio_id;
-                    tbl_Domicilio domicilio = db.tbl_Domicilio.Where(x => x.domicilio_id == idD && x.usuario_Fk == usuario).FirstOrDefault();
-                    domicilio.ubicacion = datosDomicilio.ubicacion;
-                    domicilio.referencia = datosDomicilio.referencia;
-                    idomicilio.Update(domicilio);
-
+                    if (idD == 0)
+                    {
+                        var domicilio = new tbl_Domicilio();
+                        domicilio.usuario_Fk = usuario;
+                        domicilio.ubicacion = datosDomicilio.ubicacion;
+                        domicilio.referencia = datosDomicilio.referencia;
+                        idomicilio.Insert(domicilio);
+                    }
+                    else
+                    {
+                        tbl_Domicilio domicilio = db.tbl_Domicilio.Where(x => x.domicilio_id == idD && x.usuario_Fk == usuario).FirstOrDefault();
+                        domicilio.ubicacion = datosDomicilio.ubicacion;
+                        domicilio.referencia = datosDomicilio.referencia;
+                        idomicilio.Update(domicilio);
+                    }
 
                     Order.fechaOrden = DateTime.Now;
                     Order.estadoOrden = "Procesando";
