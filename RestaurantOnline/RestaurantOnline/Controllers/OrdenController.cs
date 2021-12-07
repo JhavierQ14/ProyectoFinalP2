@@ -39,7 +39,7 @@ namespace RestaurantOnline.Controllers
             this.idocumento = idocumento;
         }
 
-/***************************************************************************************************************************/
+        /***************************************************************************************************************************/
         //void LastOrder()
         //{
 
@@ -56,7 +56,7 @@ namespace RestaurantOnline.Controllers
 
         //}
 
-/***********************************************************************************************************************/
+        /***********************************************************************************************************************/
         public IActionResult Orden()
         {
             var lstPago = impago.metodoPago();
@@ -122,45 +122,44 @@ namespace RestaurantOnline.Controllers
             var Detalle = new tbl_DetalleOrden();
             int idD;
 
-            //try
-            //{
-            if (User.Identity.IsAuthenticated)
+            try
             {
-                LoginHelper.GetNameIdentifier(User);
-                int usuario = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+                if (User.Identity.IsAuthenticated)
+                {
+                    LoginHelper.GetNameIdentifier(User);
+                    int usuario = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
 
-                idD = datosDomicilio.domicilio_id;
-                tbl_Domicilio domicilio = db.tbl_Domicilio.Where(x => x.domicilio_id == idD && x.usuario_Fk == usuario).FirstOrDefault();
-                domicilio.ubicacion = datosDomicilio.ubicacion;
-                domicilio.referencia = datosDomicilio.referencia;
-                idomicilio.Update(domicilio);
+                    idD = datosDomicilio.domicilio_id;
+                    tbl_Domicilio domicilio = db.tbl_Domicilio.Where(x => x.domicilio_id == idD && x.usuario_Fk == usuario).FirstOrDefault();
+                    domicilio.ubicacion = datosDomicilio.ubicacion;
+                    domicilio.referencia = datosDomicilio.referencia;
+                    idomicilio.Update(domicilio);
 
 
-                Order.fechaOrden = DateTime.Now;
-                Order.estadoOrden = "Procesando";
-                Order.user_FK = usuario;
-                Order.metodoPago_FK = 1;
-                Order.documento_Fk = 1;
-                iorden.Insert(Order);
+                    Order.fechaOrden = DateTime.Now;
+                    Order.estadoOrden = "Procesando";
+                    Order.user_FK = usuario;
+                    Order.metodoPago_FK = 1;
+                    Order.documento_Fk = 1;
+                    iorden.Insert(Order);
+
+                    var car = db.tbl_Carrito.Include(x => x.TblProducto).Where(x => x.usuario_Fk == usuario).ToList();
+                    foreach (var item in car)
+                    {
+                        Detalle.cantidad = item.cantidadP;
+                        Detalle.totalFinal = item.totalP * item.cantidadP;
+                        Detalle.orden_FK = Order.orden_id;
+                        Detalle.producto_Fk = item.producto_Fk;
+
+                    }
+
+                    idetalleOrden.Insert(Detalle);
+                }
+            }
+            catch (Exception ex)
+            {
 
             }
-
-            foreach (var item in datosOrden.Detalle)
-            {
-                Detalle.cantidad = item.cantidad;
-                Detalle.totalFinal = item.totalFinal;
-                Detalle.orden_FK = Order.orden_id;
-                Detalle.producto_Fk = item.producto_Fk;
-                //db.tbl_DetalleOrden.Add(Detalle);
-                
-            }
-            //db.SaveChanges();
-            idetalleOrden.Insert(Detalle);
-            //}
-            //catch(Exception ex)
-            //{
-
-            //}
 
             return Redirect("/Home/Index");
 

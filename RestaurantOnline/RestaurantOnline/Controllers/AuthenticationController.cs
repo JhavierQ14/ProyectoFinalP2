@@ -35,47 +35,54 @@ namespace RestaurantOnline.Controllers
 
         public async Task<IActionResult> Log(LogInViewModels users)
         {
-            var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.correoUser)).FirstOrDefaultAsync();
-
-            if (log != null)
+            if (ModelState.IsValid)
             {
-                if (HashHelper.CheckHash(users.contraUser, log.contraU, log.encryptionU))
+                var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.correoUser)).FirstOrDefaultAsync();
+
+                if (log != null)
                 {
-                    var nameUser = log.nombreU +" "+ log.apellidoU;
-                    var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, log.usuario_id.ToString()));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, nameUser));
-                    identity.AddClaim(new Claim(ClaimTypes.Email, log.correoU));
-                    identity.AddClaim(new Claim(ClaimTypes.Role, log.TblRolUsuario.nombreRol));
-                    identity.AddClaim(new Claim("Dato", "Valor"));
-
-                    var principal = new ClaimsPrincipal(identity);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, 
-                        new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(1), IsPersistent = true });
-
-                    var typeUser = log.TblRolUsuario.nombreRol;
-
-                    if (typeUser == "Administrador")
+                    if (HashHelper.CheckHash(users.contraUser, log.contraU, log.encryptionU))
                     {
-                        return Redirect("/Administracion/Index");
+                        var nameUser = log.nombreU + " " + log.apellidoU;
+                        var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+                        identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, log.usuario_id.ToString()));
+                        identity.AddClaim(new Claim(ClaimTypes.Name, nameUser));
+                        identity.AddClaim(new Claim(ClaimTypes.Email, log.correoU));
+                        identity.AddClaim(new Claim(ClaimTypes.Role, log.TblRolUsuario.nombreRol));
+                        identity.AddClaim(new Claim("Dato", "Valor"));
+
+                        var principal = new ClaimsPrincipal(identity);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+                            new AuthenticationProperties { ExpiresUtc = DateTime.Now.AddDays(1), IsPersistent = true });
+
+                        var typeUser = log.TblRolUsuario.nombreRol;
+
+                        if (typeUser == "Administrador")
+                        {
+                            return Redirect("/Administracion/Index");
+                        }
+                        else
+                        {
+                            return Redirect("/Home/Index");
+                        }
                     }
                     else
                     {
-                        return Redirect("/Home/Index");
-                    }                
+                        ViewBag.MLog = "Usuario o password incorrectas";
+
+                        return View("LogIn");
+                    }
+
                 }
                 else
                 {
-                    ViewBag.MLog = "Usuario o password incorrectas";
-
+                    string mens = "El usuario no existe";
+                    ViewBag.alert1 = mens;
                     return View("LogIn");
                 }
-
             }
             else
             {
-                string mens = "El usuario no existe";
-                ViewBag.alert1 = mens;
                 return View("LogIn");
             }
         }

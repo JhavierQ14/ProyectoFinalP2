@@ -26,7 +26,6 @@ namespace RestaurantOnline.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                LoginHelper.GetNameIdentifier(User);
                 var userId = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
 
                 var carritolist = db.tbl_Carrito.Include(x => x.TblProducto).Where(x => x.usuario_Fk == userId).ToList();

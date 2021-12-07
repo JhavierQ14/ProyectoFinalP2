@@ -16,8 +16,8 @@ namespace RestaurantOnline.Models.ViewModels
 
     public class DetalleViewModel
     {
-        public int? cantidad { get; set; }
-        public decimal? totalFinal { get; set; }
+        public int? cantidadP { get; set; }
+        public decimal? precioP { get; set; }
         public int orden_FK { get; set; }
         public int producto_Fk { get; set; }
     }
