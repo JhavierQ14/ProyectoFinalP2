@@ -37,7 +37,7 @@ namespace RestaurantOnline.Controllers
         {
             if (ModelState.IsValid)
             {
-                var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.contraU)).FirstOrDefaultAsync();
+                var log = await db.tbl_User.Include(x => x.TblRolUsuario).Where(a => a.correoU.Equals(users.correoU)).FirstOrDefaultAsync();
 
                 if (log != null)
                 {
