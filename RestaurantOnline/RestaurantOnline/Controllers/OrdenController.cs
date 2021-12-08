@@ -26,7 +26,7 @@ namespace RestaurantOnline.Controllers
         private IDocumento idocumento;
 
 
-        public int LastID;
+        public bool confirmacion = false;
 
         public OrdenController(ApplicationDbContext db, IOrden iorden, IDetalleOrden idetalleOrden, IDomicilio idomicilio, ICarrito icarrito, IMetodoPago impago, IDocumento idocumento)
         {
@@ -56,7 +56,7 @@ namespace RestaurantOnline.Controllers
 
         //}
 
-        /***********************************************************************************************************************/
+/***********************************************************************************************************************/
         public IActionResult Orden()
         {
             var lstPago = impago.metodoPago();
@@ -115,15 +115,15 @@ namespace RestaurantOnline.Controllers
                 return View();
             }
         }
-
+/********************************************/
         public IActionResult Venta(VentaViewModel datosOrden, tbl_Domicilio datosDomicilio)
         {
             var Order = new tbl_Orden();
             var Detalle = new tbl_DetalleOrden();
             int idD = datosDomicilio.domicilio_id;
 
-            try
-            {
+            //try
+            //{
                 if (User.Identity.IsAuthenticated)
                 {
                     LoginHelper.GetNameIdentifier(User);
@@ -159,16 +159,24 @@ namespace RestaurantOnline.Controllers
                         Detalle.totalFinal = item.totalP * item.cantidadP;
                         Detalle.orden_FK = Order.orden_id;
                         Detalle.producto_Fk = item.producto_Fk;
-
+                        idetalleOrden.Insert(Detalle);
                     }
+                  
+                    confirmacion = true;
 
-                    idetalleOrden.Insert(Detalle);
+                    //if (confirmacion == true)
+                    //{
+                        //inventario eliminarEmpleado = emple.inventario.Where(x => x.id_empleado == id).FirstOrDefault();
+
+                        //emple.inventario.Remove(eliminarEmpleado);
+                        //emple.SaveChanges();
+                    //}
                 }
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
 
             return Redirect("/Home/Index");
 

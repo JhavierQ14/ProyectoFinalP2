@@ -8,9 +8,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using RestaurantOnline.Helper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestaurantOnline.Controllers
 {
+    [Authorize]
     public class CarritoController : Controller
     {
 
@@ -42,19 +44,26 @@ namespace RestaurantOnline.Controllers
         {
             tbl_Carrito carrito = new tbl_Carrito();
 
-            if (User.Identity.IsAuthenticated)
-            {
-                LoginHelper.GetNameIdentifier(User);
+                int usuario = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+                var repeticion = db.tbl_Carrito.Where(a => a.producto_Fk.Equals(car.producto_Fk) && a.usuario_Fk == usuario).FirstOrDefault();
 
+            if (repeticion == null)
+            {
                 carrito.cantidadP = 1;
                 carrito.totalP = car.totalP;
-                carrito.usuario_Fk = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+                carrito.usuario_Fk = usuario;
                 carrito.producto_Fk = car.producto_Fk;
 
                 icarrito.Insert(carrito);
+
+                return Redirect("/Products/Menu");
+            }
+            else
+            {
+                return Redirect("/Products/Menu");
             }
 
-            return Redirect("/Products/Menu");
+                
         }
 
         public IActionResult Eliminar(int id)
@@ -87,6 +96,25 @@ namespace RestaurantOnline.Controllers
         public IActionResult Regresar()
         {
             return Redirect("/Products/Menu");
+        }
+
+
+        public IActionResult Validar()
+        {
+            List<tbl_Carrito> carritolist;
+            var userId = Convert.ToInt32(LoginHelper.GetNameIdentifier(User));
+            carritolist = db.tbl_Carrito.Include(x => x.TblProducto).Where(x => x.usuario_Fk == userId).ToList();
+
+            if (carritolist.Count() > 0)
+            {
+               
+                return Redirect("/Orden/Orden");
+            }
+            else
+            {
+                ViewBag.mensaje = "Debes agregar Comidas para relizar tu orden";
+                return Redirect("/Carrito/Carrito");
+            }        
         }
 
     }

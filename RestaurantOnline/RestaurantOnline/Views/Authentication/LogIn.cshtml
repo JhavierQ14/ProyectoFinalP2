@@ -21,19 +21,22 @@
         <div class="forms-container">
             <div class="signin-signup">
 
-                <form asp-action="Log" asp-controller="Authentication" class="sign-in-form" id="Log">
+                <form asp-action="Log" asp-controller="Authentication" class="sign-in-form" id="Log" method="post">
                     <h2 class="title animate__animated animate__fadeInDown">Acceder</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input name="correoU" type="text" placeholder="Correo" @*asp-for="correoUser"*@ required/>
+                        <input name="correoU" type="text" placeholder="Correo" @*asp-for="correoUser"*@ required />
                         @*<span asp-validation-for="correoUser"></span>*@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input name="contraU" type="password" placeholder="Contraseña" @*asp-for="contraUser"*@ required/>
+                        <input name="contraU" type="password" placeholder="Contraseña" @*asp-for="contraUser"*@ required />
                         @*<span asp-validation-for="contraUser"></span>*@
                     </div>
                     <input type="submit" value="Acceder" class="btn solid" />
+                    <br />
+                    <br />
+                    <div class="alert-danger">@ViewBag.MLog</div>
 
                 </form>
 
@@ -67,9 +70,7 @@
                     <input type="submit" class="btn" value="Registrarse" />
 
                 </form>
-
-
-            </div>
+            </div>       
         </div>
 
         <div class="panels-container">

@@ -20,15 +20,13 @@
         <a href="#" class="logo"> <i class="fas fa-utensils"></i> FastFood </a>
         <nav class="navbar">
             <a href="#home">Inicio</a>
-            @*<a href="#about">about</a>*@
-            @*<a href="#popular">popular</a>*@
             <a href="#menu">Menú</a>
             <a href="#order">ordenar</a>
-            @*<a href="#blogs">blogs</a>*@
         </nav>
 
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
+            <a asp-controller="Products" asp-action="Menu"><div id="cart-btn" class="fas fa-hamburger"></div></a>
             <a asp-controller="Products" asp-action="RegresarC"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
 
             @if (User.Identity.IsAuthenticated)

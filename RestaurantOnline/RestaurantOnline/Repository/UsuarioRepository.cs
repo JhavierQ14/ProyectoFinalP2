@@ -1,4 +1,5 @@
-﻿using RestaurantOnline.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantOnline.Data;
 using RestaurantOnline.Entidades;
 using RestaurantOnline.Service;
 using System;
@@ -30,7 +31,8 @@ namespace RestaurantOnline.Repository
 
         public List<tbl_User> ListarUsuario()
         {
-            return app.tbl_User.ToList();
+            var u = app.tbl_User.Include(x => x.TblRolUsuario)/*.Where(x => x.TblRolUsuario.nombreRol == "Administrador")*/.ToList();
+            return u;
         }
 
         //public List<tbl_User> ListEmail(string emailUser)

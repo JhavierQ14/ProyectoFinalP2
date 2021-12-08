@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Responsive Food / Resturant Website Design Tutorial</title>
+    <title>Fast Food Restaurant / Carrito</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -70,13 +70,14 @@
             <div class="box">
 
                 <h3 class="total"> total : <span>$@ViewBag.Total</span> </h3>
-                <a class="btn" asp-controller="Orden" asp-action="Orden">
+                <a class="btn" asp-controller="Carrito" asp-action="Validar">
                     Realizar Compra
                 </a>
 
             </div>
 
         </div>
+        <h1 class="alert-danger">@ViewBag.mensaje</h1>
     </section>
 </body>
 </html>

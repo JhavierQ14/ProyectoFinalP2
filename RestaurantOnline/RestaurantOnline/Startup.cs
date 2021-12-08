@@ -58,6 +58,7 @@ namespace RestaurantOnline
             services.AddTransient<IDomicilio, DomicilioRepository>();
             services.AddTransient<IMetodoPago, MetodoPagoRepository>();
             services.AddTransient<IDocumento, DocumentoRepository>();
+            services.AddTransient<IUsuario, UsuarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,7 +88,7 @@ namespace RestaurantOnline
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Administracion}/{action=Order}/{id?}");
             });
         }
     }

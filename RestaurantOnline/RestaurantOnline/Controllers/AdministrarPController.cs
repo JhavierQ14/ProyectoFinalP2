@@ -44,7 +44,7 @@ namespace RestaurantOnline.Controllers
                 producto.fechaCreacionP = DateTime.Now;
                 producto.estadoProducto = "activo";
                 producto.imageP = productos.imageP;
-                producto.menu_Fk = 1 /*productos.menu_Fk;*/;
+                producto.menu_Fk = productos.menu_Fk;
 
                 iproducto.Insert(producto);
             }
@@ -62,7 +62,7 @@ namespace RestaurantOnline.Controllers
             }
 
      
-                return Redirect("/AdministrarP/AgregarProductos");
+                return Redirect("/Administracion/Products");
            
             
 
@@ -78,45 +78,10 @@ namespace RestaurantOnline.Controllers
             ViewBag.imageP = productos.imageP;
             ViewBag.menuFK = productos.menu_Fk;
 
-
-            return View("DatosProductos");
-        }
-
-        public IActionResult DeleteProduts(tbl_Producto producto)
-        {
-            int codId = producto.producto_id;
-            tbl_Producto deleteL = db.tbl_Producto.Where(x => x.producto_id == codId).FirstOrDefault();
-            deleteL.estadoProducto = "inactivo";
-
-            iproducto.Update(deleteL);
-
-            return Redirect("/AdministrarP/AgregarProductos");
-        }
-
-        public IActionResult ComboProducts(tbl_Producto producto)
-        {
-            return View("DatosProductos");
-        }
-
-        public IActionResult DateProducts()
-        {
-            var cbxEstado = iproducto.ListofP();
             var cbxMenu = imenu.ListMenu();
 
-            List<SelectListItem> listEstado = new List<SelectListItem>();
             List<SelectListItem> listMenu = new List<SelectListItem>();
 
-            //foreach (var item in cbxEstado)
-            //{
-            //    listEstado.Add(
-            //        new SelectListItem
-            //        {
-            //            Text = item.estadoProducto,
-            //            //Value = Convert.ToString(item.producto_id)
-            //        });
-
-            //    ViewBag.EList = listEstado;
-            //}
             foreach (var item in cbxMenu)
             {
                 listMenu.Add(
@@ -129,8 +94,26 @@ namespace RestaurantOnline.Controllers
                 ViewBag.MList = listMenu;
             }
 
-            return View();
+            return View("DatosProductos");
         }
+
+        public IActionResult DeleteProduts(tbl_Producto producto)
+        {
+            int codId = producto.producto_id;
+            tbl_Producto deleteL = db.tbl_Producto.Where(x => x.producto_id == codId).FirstOrDefault();
+            deleteL.estadoProducto = "inactivo";
+
+            iproducto.Update(deleteL);
+
+            return Redirect("/Administracion/Products");
+        }
+
+        public IActionResult ComboProducts(tbl_Producto pro)
+        {
+
+            return View("DatosProductos");
+        }
+
 
     }
 }

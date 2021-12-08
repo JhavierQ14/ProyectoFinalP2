@@ -1,0 +1,33 @@
+﻿@model List<RestaurantOnline.Entidades.tbl_DetalleOrden>
+@{
+    ViewData["Title"] = "DetalleOrden";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="text-center">
+    <table id="mitabla" class="table table-dark table-striped">
+
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var iteracion in Model)
+            {
+            <tr>
+                <td>@iteracion.TblProducto.nombreProducto</td>
+                <td>@iteracion.cantidad</td>
+                <td>@iteracion.TblProducto.precioP</td>
+                <td>@iteracion.totalFinal</td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

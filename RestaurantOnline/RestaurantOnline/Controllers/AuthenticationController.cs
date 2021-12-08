@@ -30,9 +30,18 @@ namespace RestaurantOnline.Controllers
 
         public IActionResult LogIn()
         {
+            //string mensaje = TempData["shortMessage"].ToString();
+            if (TempData["shortMessage"] == null) {
+                ViewBag.MLog = "";
+            }
+            else
+            {
+                ViewBag.MLog = TempData["shortMessage"].ToString();
+            }
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Log(tbl_User users)
         {
             if (ModelState.IsValid)
@@ -59,7 +68,7 @@ namespace RestaurantOnline.Controllers
 
                         if (typeUser == "Administrador")
                         {
-                            return Redirect("/Administracion/Index");
+                            return Redirect("/Administracion/Order");
                         }
                         else
                         {
@@ -68,17 +77,20 @@ namespace RestaurantOnline.Controllers
                     }
                     else
                     {
-                        ViewBag.MLog = "Usuario o password incorrectas";
+                        TempData["shortMessage"] = "Usuario o password incorrectas";
 
-                        return View("LogIn");
+                        //ViewBag.MLog = "Usuario o password incorrectas";
+
+                        return RedirectToAction("LogIn");
                     }
 
                 }
                 else
                 {
-                    string mens = "El usuario no existe";
-                    ViewBag.alert1 = mens;
-                    return View("LogIn");
+                    TempData["shortMessage"] = "El usuario no existe";
+                    //string mens = "El usuario no existe";
+                    //ViewBag.alert1 = mens;
+                    return RedirectToAction("LogIn");
                 }
             }
             else

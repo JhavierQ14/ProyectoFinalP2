@@ -238,7 +238,7 @@ span.field-validation-error {
   transform: translateX(800px);
 }
 
-/* ANIMATION */
+/* ANIMACIONES */
 
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);

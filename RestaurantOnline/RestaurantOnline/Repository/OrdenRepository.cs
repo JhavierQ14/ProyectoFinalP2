@@ -1,4 +1,5 @@
-﻿using RestaurantOnline.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantOnline.Data;
 using RestaurantOnline.Entidades;
 using RestaurantOnline.Service;
 using System;
@@ -35,7 +36,15 @@ namespace RestaurantOnline.Repository
 
         public ICollection<tbl_Orden> Orden()
         {
-            return app.tbl_Orden.ToList();
+            var orden = app.tbl_Orden
+                .Include(x => x.TblUser)
+                .Include(x => x.TblMetodoPago)
+                .Include(x => x.TblDocumento)
+                .Include(x => x.TblDetalleOrdens)
+                .Where(x => x.estadoOrden == "Procesando")
+                .ToList();
+
+            return orden;
         }
 
         public void Update(tbl_Orden orden)

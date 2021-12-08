@@ -1,0 +1,72 @@
+﻿@model List<RestaurantOnline.Entidades.tbl_Producto>
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="text-center">Productos del restaurante</h1>
+
+    <div class="text-center">
+        <table class="table table-hover">
+            <thead>
+            <th typeof="hidden">
+                Id
+            </th>
+            <th>
+                Nombre del producto
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Estado Producto
+            </th>
+            <th>
+                Imagen del producto
+            </th>
+            <th>
+                Menú
+            </th>
+            <th>
+                @Html.ActionLink("Agregar Productos", "DatosProductos", "AdministrarP", new { producto_id = 0 }, new { @class = "btn btn-success" })
+            </th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@item.producto_id</td>
+                        <td>@item.nombreProducto</td>
+                        <td>@item.precioP</td>
+                        <td>@item.fechaCreacionP</td>
+                        <td>@item.estadoProducto</td>
+                        <td>@item.imageP</td>
+                        <td>@item.menu_Fk</td>
+
+                        <td>
+                            <div class="container m-3">
+                                @Html.ActionLink("Actualizar", "DatosProductos", "AdministrarP", new { producto_id = item.producto_id, estadoProducto = item.estadoProducto, nombreProducto = item.nombreProducto, preciop = item.precioP, imageP = item.imageP, menuFK = item.menu_Fk }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Borrar", "DeleteProduts", "AdministrarP", new { producto_id = item.producto_id }, new { @class = "btn btn-danger" })
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+
+</html>
